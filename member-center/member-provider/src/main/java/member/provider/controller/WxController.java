@@ -32,7 +32,7 @@ public class WxController {
 
     @RequestMapping("/wx")
     public String test() {
-        return "wx-test";
+        return "wx-test22222222222222";
     }
 
     /**
