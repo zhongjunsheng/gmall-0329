@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bfa6bdf8-c05c-4630-abde-057608ed076b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/WxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/WxController.java" afterDir="false" />
     </list>
@@ -44,11 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/WxController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            <state relative-caret-position="144">
+              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -108,11 +107,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -201,8 +200,8 @@
         <option value="$PROJECT_DIR$/member-provider/src/main/java/member/provider/rabbitMq/MsgAnnocationConsumer.java" />
         <option value="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/rabbitMqDelayController.java" />
         <option value="$PROJECT_DIR$/member-provider/pom.xml" />
-        <option value="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java" />
         <option value="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/WxController.java" />
+        <option value="$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java" />
       </list>
     </option>
   </component>
@@ -662,7 +661,7 @@
       <workItem from="1585472793998" duration="4553000" />
       <workItem from="1585483033839" duration="853000" />
       <workItem from="1585539739386" duration="7610000" />
-      <workItem from="1585578024495" duration="1249000" />
+      <workItem from="1585578024495" duration="1870000" />
     </task>
     <servers />
   </component>
@@ -699,7 +698,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="377456000" />
+    <option name="totallyTimeSpent" value="378077000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1182,13 +1181,6 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1198,8 +1190,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/WxController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        <state relative-caret-position="144">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/member-provider/src/main/java/member/provider/controller/TestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
         </state>
       </provider>
     </entry>
