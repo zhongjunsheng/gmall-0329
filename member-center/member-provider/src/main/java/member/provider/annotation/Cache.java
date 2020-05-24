@@ -8,5 +8,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Cache {
-	String value() default "";
+	/**
+	 * z只有一个成员变量是 只能用value()
+	 * @return
+	 */
+	String name() default "";
+	String pwd() default "";
 }

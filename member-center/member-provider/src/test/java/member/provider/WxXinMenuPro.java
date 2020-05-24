@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import member.center.com.wechatPojo.Button;
 import member.center.com.wechatPojo.ClickButton;
 import member.center.com.wechatPojo.ViewButton;
-import member.provider.common.HttpUtils;
-import member.provider.common.WxServiceUtils;
+import member.provider.common.utils.HttpUtils;
+import member.provider.common.utils.WxServiceUtils;
 import org.junit.Test;
 
 public class WxXinMenuPro {

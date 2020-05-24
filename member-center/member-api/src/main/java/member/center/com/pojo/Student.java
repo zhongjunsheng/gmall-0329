@@ -1,12 +1,8 @@
 package member.center.com.pojo;
 
-import lombok.Data;
-import lombok.ToString;
-
 import java.io.Serializable;
 
-@Data
-@ToString
+
 public class Student implements Serializable {
     private String _id;
     private String name;
@@ -16,5 +12,32 @@ public class Student implements Serializable {
         this._id = _id;
         this.name = name;
         this.age = age;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public Student set_id(String _id) {
+        this._id = _id;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Student setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Student setAge(Integer age) {
+        this.age = age;
+        return this;
     }
 }

@@ -2,8 +2,8 @@ package member.provider.controller;
 
 import member.center.com.api.WxUserService;
 import member.center.com.wechatPojo.WxUser;
-import member.provider.common.CheckTokenUtil;
-import member.provider.common.WxServiceUtils;
+import member.provider.common.utils.CheckTokenUtil;
+import member.provider.common.utils.WxServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

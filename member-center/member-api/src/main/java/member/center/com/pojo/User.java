@@ -1,8 +1,6 @@
 package member.center.com.pojo;
 
-import lombok.Data;
 
-@Data
 public class User {
     private Long id;
     private String username;
@@ -19,5 +17,59 @@ public class User {
         this.address = address;
         this.flag = flag;
         this.parentCode = parentCode;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public User setPwd(String pwd) {
+        this.pwd = pwd;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public User setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public User setFlag(String flag) {
+        this.flag = flag;
+        return this;
+    }
+
+    public String getParentCode() {
+        return parentCode;
+    }
+
+    public User setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+        return this;
     }
 }

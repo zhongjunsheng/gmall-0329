@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import member.center.com.wechatPojo.MsgData;
 import member.center.com.wechatPojo.MsgModel;
 import member.center.com.wechatPojo.MsgTemplate;
-import member.provider.common.HttpUtils;
-import member.provider.common.WxServiceUtils;
+import member.provider.common.utils.HttpUtils;
+import member.provider.common.utils.WxServiceUtils;
 import org.junit.Test;
 
 public class WxXinTemplteMessageTestPush {

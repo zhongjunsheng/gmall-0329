@@ -1,9 +1,5 @@
 package member.center.com.pojo;
 
-
-import lombok.Data;
-
-@Data
 public class Member {
     private Integer id;
     private String name;
@@ -16,5 +12,31 @@ public class Member {
         this.age = age;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Member setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Member setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Member setAge(Integer age) {
+        this.age = age;
+        return this;
+    }
 }
 
