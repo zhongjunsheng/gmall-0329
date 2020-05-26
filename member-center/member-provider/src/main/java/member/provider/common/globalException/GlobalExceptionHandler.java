@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
+ * 全局异常定义类
  * @ControllerAdvice 配合 @ExceptionHandler 来处理全局异常
  *
  */

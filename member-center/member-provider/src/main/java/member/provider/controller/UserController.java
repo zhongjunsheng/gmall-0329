@@ -60,6 +60,13 @@ public class UserController {
         return name;
     }
 
+    @RequestMapping("myTest5")
+    public String myTest5(){
+
+        int a = 1/0;
+        return "gg";
+    }
+
 
 
 
