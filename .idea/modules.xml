@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/gmall-0329.iml" filepath="$PROJECT_DIR$/.idea/gmall-0329.iml" />
+      <module fileurl="file://$PROJECT_DIR$/member-center/member-api/member-api.iml" filepath="$PROJECT_DIR$/member-center/member-api/member-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/member-center/member-center.iml" filepath="$PROJECT_DIR$/member-center/member-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/member-center/member-provider/member-provider.iml" filepath="$PROJECT_DIR$/member-center/member-provider/member-provider.iml" />
+    </modules>
+  </component>
+</project>
