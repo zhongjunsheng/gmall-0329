@@ -1,5 +1,6 @@
 package member.provider.Java8Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,12 +27,37 @@ import org.junit.Test;
 public class Java8StreamApiTest {
 	
 	static List<User> list = 	Arrays.asList(
-			 new User("gg",13,5000.99),
-			 new User("aa",10,5000.99),
-			 new User("bb",11,4000.00)
+			 new User("gg",13,1.0),
+			 new User("aa",10,2.0),
+			 new User("bb",11,3.0)
 			 );
 
-	
+
+
+	static List<DemoUser> users = 	Arrays.asList(
+			new DemoUser(1,new BigDecimal(10)),
+			new DemoUser(2,new BigDecimal(20.5)),
+			new DemoUser(3,new BigDecimal(30.5))
+	);
+
+
+
+	@Test
+	public void reduce2(){
+		//存在一个则返回true
+		boolean b = list.stream().anyMatch(item -> item.getAge() > 10);
+		System.out.println(b);
+
+	}
+
+
+	@Test
+	public void reduce(){
+		BigDecimal pay = users.stream().map(item ->
+				item.getPrice().multiply(new BigDecimal(item.getNum()))).reduce((a, b) -> a.add(b)).get();
+		System.out.println(pay);
+	}
+
 	
 	@Test
 	public void test1() {
@@ -141,14 +167,14 @@ public class Java8StreamApiTest {
 	
 		@Test
 		//求和
-		public static void test10() {
+		public  void test10() {
 			int sum = list.stream().mapToInt(user -> user.getAge()).sum(); //年龄总和
 			System.out.println(sum);
 		}
 	
 		
 		
-	public static void main(String[] args) throws InterruptedException {
+	//public static void main(String[] args) throws InterruptedException {
 		
 
 		/*List<String> lt = Arrays.asList("aa","cc","bb","dd");
@@ -167,7 +193,7 @@ public class Java8StreamApiTest {
 		
 		
              
-	}
+	//}
 	
 	private int getA() {
 		try {

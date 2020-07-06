@@ -87,6 +87,5 @@ public class WxXinMenuPro {
         String result = HttpUtils.doPost(url, jsonStr);
         System.out.println(result);
 
-
     }
 }

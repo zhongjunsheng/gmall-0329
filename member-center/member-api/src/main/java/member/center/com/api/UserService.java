@@ -16,4 +16,6 @@ public interface UserService {
     PageBean<List<User>> getUserList();
 
     User getUserByEntity(User user);
+
+    int save(User user);
 }

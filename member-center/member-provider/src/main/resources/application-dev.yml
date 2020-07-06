@@ -1,19 +1,45 @@
-server.port=8081
+#nacos:
+  #config:
+    #server-addr: 127.0.0.1:8848    ##用nacos做配置中心动态修改配置参数,如果配置中心挂了则用项目里的配置文件
+    #server-addr: 192.168.127.131:8848  #nginx的配置url （集群时是VIP地址）
+server:
+   port: 8081
 
-# mysql springBoot2.0后的话是com.mysql.cj.jdbc.Driver
-spring.datasource.url=jdbc:mysql://192.168.127.130:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-spring.datasource.username=root
-spring.datasource.password=123456
+city: zhanjian
+# mysql springBoot2.0之后的话是com.mysql.cj.jdbc.Driver
+spring:
+  application:
+    name: member-service
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql:///zjs?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      username: root
+      password:
+  redis:
+      host: 192.168.127.130
+      port: 6379
+      timeout: 3000
+
+  data:
+    mongodb:
+      host: 192.168.127.131
+      port: 27017
+      database: school
+
 
 #mybatis别名配置
-mybatis.type-aliases-package=member.center.com.pojo
+#mybatis.type-aliases-package=member.center.com.pojo
 #mybatis.mapper-locations=classpath:member.provider.mapper/*.xml
 #mybatis-plus 配置
 #mybatis-plus.mapper-locations=classpath*:**/mapper/*Mapper.xml
 #默认驼峰转大写策略是true
-mybatis-plus.configuration.map-underscore-to-camel-case=true
+mybatis-plus:
+       configuration:
+              map-underscore-to-camel-case: true
 #主键类型 AUTO:“数据库ID自增”, INPUT:“用户输入ID”, ID_WORKER:“全局唯一ID (数字类型唯一ID)”, UUID:“全局唯一ID UUID”;
-mybatis-plus.global-config.db-config.id-type= AUTO
+       global-config:
+              db-config:
+                    id-type: AUTO
 #mybatis-plus.global-config.db-config.id-type= UUID
 
 #elastrisearch配置
@@ -41,7 +67,7 @@ mybatis-plus.global-config.db-config.id-type= AUTO
 #消息手工签收
 #spring.rabbitmq.listener.simple.acknowledge-mode=manual
 #监听大小5个
-$spring.rabbitmq.listener.simple.concurrency= 5
+#spring.rabbitmq.listener.simple.concurrency= 5
 #最大10个监听
 #spring.rabbitmq.listener.simple.max-concurrency= 10
 
@@ -53,14 +79,15 @@ $spring.rabbitmq.listener.simple.concurrency= 5
 
 
 
+
 #redisConfig 配置
 # Redis服务器地址
-redis.host=192.168.127.130
+#redis.host=192.168.127.130
 # Redis服务器连接端口
-redis.port=6379
+#redis.port=6379
+
 # Redis服务器连接密码（默认为空）
 # 连接超时时间（毫秒）
-spring.redis.timeout=3000
 # 连接池最大连接数（使用负值表示没有限制）
 #spring.redisConfig.pool.max-active=8
 # 连接池最大阻塞等待时间（使用负值表示没有限制）

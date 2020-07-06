@@ -21,4 +21,7 @@ public interface IProductService extends IService<Product> {
     Product selectOne(int id);
 
     PageBean selectPage();
+
+    void parent();
+    void child();
 }

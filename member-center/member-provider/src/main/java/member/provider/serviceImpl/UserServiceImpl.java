@@ -9,6 +9,8 @@ import member.center.com.pojo.User;
 import member.provider.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,5 +46,15 @@ public class UserServiceImpl implements UserService {
         userWrapper.setEntity(user);
         User user1 = userMapper.selectOne(userWrapper);
         return user1;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional
+    public int save(User user) {
+        user = new User();
+        user.setUsername("allen").setPwd("123456");
+        int insert = userMapper.insert(user);
+        return insert;
     }
 }

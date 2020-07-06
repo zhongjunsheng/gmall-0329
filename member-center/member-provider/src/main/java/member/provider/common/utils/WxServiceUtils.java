@@ -180,7 +180,7 @@ public class WxServiceUtils {
                 break;
 
              //事件处理
-            case "event":
+            case "springevent":
                 msg = dealEvent(requestMap);
                 break;
             default:

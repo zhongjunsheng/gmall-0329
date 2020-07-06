@@ -1,7 +1,5 @@
 package member.provider.Java8Test;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 public class User {
 	private String name;
 	private Integer Age;

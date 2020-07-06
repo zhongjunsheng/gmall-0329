@@ -198,26 +198,6 @@ public class JsonUtils {
         return null;
     }
 
-    // /**
-    // * 将Map转为JSON数组
-    // *
-    // * @param params 参数
-    // */
-    // public static String toJsonStr(Map<String, String> params) {
-    // ObjectNode root = OBJECT_MAPPER.createObjectNode();
-    // for (Map.Entry<String, String> item : params.entrySet()) {
-    // JsonNode node = OBJECT_MAPPER.createObjectNode();
-    // node.at(item.getValue());
-    // root.set(item.getKey(), node);
-    // }
-    // try {
-    // return OBJECT_MAPPER.writeValueAsString(root);
-    // } catch (JsonProcessingException e) {
-    // log.error("Json转换时,发生异常", e);
-    // }
-    // return null;
-    // }
-
     /**
      * 将对象转为JSON
      *

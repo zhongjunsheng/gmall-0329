@@ -9,7 +9,6 @@ public class SemaphoreTest {
 
         Semaphore semaphore = new Semaphore(3); //模拟3个车位,里面表示可用资源数量
 
-
         //6部车抢3个车位
         for (int i = 0; i <6 ; i++) {   //模拟6部车
 

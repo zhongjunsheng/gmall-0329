@@ -3,14 +3,20 @@ package member.provider.product.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import member.center.com.Utils.PageBean;
+import member.center.com.api.UserService;
+import member.center.com.pojo.User;
 import member.provider.common.entity.Condition;
 import member.provider.product.entity.Product;
 import member.provider.product.mapper.ProductMapper;
 import member.provider.product.service.IProductService;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * <p>
@@ -24,6 +30,9 @@ import java.util.List;
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements IProductService {
     @Autowired
     private ProductMapper productMapper;
+
+   @Autowired
+   private UserService userService;
 
     @Override
     public List<Product> selectList() {
@@ -47,4 +56,39 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         List<Product> list = productMapper.findPage();
         return new PageBean(list);
     }
+
+
+
+    @Override
+    @Transactional
+    public void parent() {
+
+//       try{
+//           // 代理类调用--从aop上下文中获取代理对象
+//           ProductServiceImpl   proxy   = (ProductServiceImpl)AopContext.currentProxy();
+//           System.out.println(proxy.getClass().getName());
+//           proxy.child();
+//       }catch (Exception e){
+//           System.out.println(e);
+//       }
+//
+
+        child();
+        Product parent  = new Product();
+        parent.setPoductName("parent").setNum(10);
+        this.save(parent);
+    }
+
+
+    @Override
+    public void child() {
+        User user = new User();
+        user.setUsername("allen").setPwd("123456");
+        userService.save(user);
+        int a =1/0;
+    }
+
+
+
+
 }

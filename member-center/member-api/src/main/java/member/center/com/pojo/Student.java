@@ -40,4 +40,13 @@ public class Student implements Serializable {
         this.age = age;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "_id='" + _id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

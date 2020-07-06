@@ -22,7 +22,7 @@ package member.provider.middleware.rabbitmq;//package member.provider.rabbitMq;
 //        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
 //            if (!ack) {
 //                //消息重发或者---处理丢失 --异常处理
-//                //放入数据库 用定时任务轮询
+//                //放入数据库 用定时任务轮询再次发送
 //                System.out.println("消息发送失败" + cause + correlationData.toString());
 //                //System.out.println("消息发送失败");
 //                System.out.println("ack:" + ack);
