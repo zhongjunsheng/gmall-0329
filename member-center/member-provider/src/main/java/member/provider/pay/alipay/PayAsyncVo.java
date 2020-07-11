@@ -1,4 +1,4 @@
-package member.provider.pay;
+package member.provider.pay.alipay;
 
 import lombok.Data;
 import lombok.ToString;
