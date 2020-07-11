@@ -1,6 +1,7 @@
 package member.provider.common.globalException;
 
 import com.alibaba.fastjson.JSON;
+import org.omg.CORBA.OBJECT_NOT_EXIST;
 
 
 /**
