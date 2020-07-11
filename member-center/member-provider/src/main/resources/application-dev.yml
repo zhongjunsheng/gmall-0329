@@ -1,10 +1,9 @@
 #nacos:
-  #config:
-    #server-addr: 127.0.0.1:8848    ##用nacos做配置中心动态修改配置参数,如果配置中心挂了则用项目里的配置文件
-    #server-addr: 192.168.127.131:8848  #nginx的配置url （集群时是VIP地址）
+#  config:
+#    server-addr: 127.0.0.1:8848    ##用nacos做配置中心动态修改配置参数,如果配置中心挂了则用项目里的配置文件
+#    #server-addr: 192.168.127.131:8848  #nginx的配置url （集群时是VIP地址）
 server:
-   port: 8081
-
+   port: 8080
 city: zhanjian
 # mysql springBoot2.0之后的话是com.mysql.cj.jdbc.Driver
 spring:
@@ -20,11 +19,20 @@ spring:
       port: 6379
       timeout: 3000
 
-  data:
-    mongodb:
-      host: 192.168.127.131
-      port: 27017
-      database: school
+#  data:
+#    mongodb:
+#      host: 192.168.127.131
+#      port: 27017
+#      database: school
+alipay:
+  app_id: 2016102000727283
+  merchant_private_key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCQKZeWbwlQVfMEJsJNlF1SLpHlb9m/kBo3wIIqaK24+69tanh6EvMQIIJWjz/lpB/yd2uk2F67cn7gGYB7dvdKxu7g3/8JmkKs9GM/BtrvtFhrxHwytjiTNPZJjs8fWcX3zzif+dXdKiFT6zPLt+PV0S81ZdVfCUqXrFO1AFC7gvf/cRXsq53PGy5C+CvsbnFmn05bUwldwoFoDL2oSA3x710KzpNFi0XWR/Wf8KdiucNXbgq9Q+Y/1WOCRFAhwe8kFFnaNS8QKamnHi8bVJRiqD2eCbrfPty9z0/VjW93RasC2fisYz/qKSue8cYyvaZ/wtiqfB+vjnbiDrOdm9pjAgMBAAECggEAZeCeubbaVCWJSYPCiGSy1mMGw6eZsCC8Bm5LDoFPU4y52o8FeO9vShRPR7CQLU8hLI5sSeCGgd1WADTFcXsPI48WPWDOsRCM0gEbKe1ER2WhnvcJ9iSEMrOY4T7E7JjaqFeO4q8CDfu59b4fqnXX0sCzpf7DHRhJ2In11dHVO80tb7azcxR1G/ZqB4OMF6RfX26+6YWLiCscT9oxx1w0WjlXDdEzjv9oB/cOcV0ZTnVf+0p2Mddru3nTOqISIdzJak0lJyDna0XTKbt8u62PmaKbIIYUL4P9PyPIMTAk+xXE+QBL59QMRXZvER0Eob9SoApUkxvc64gniSpYFY8HsQKBgQDgnhea7Mnd98LiA4Z8NNbWGks5egkNrD0GQC5lpDCo3GLE7sDm9UBuT51T3YMSiEZYkvAsOVm+Yhsyfpdi8gkOcQIGuUi+mJxzfCGUSRj/RSjjz4FMUxQNIkD10CeyiyngVYCtHegJIlqCPAWEytXuoh6XLg0dIIE/CX+siniKdQKBgQCkTdveEHnSDrX6TDcFE7ubaOenCU4zSl0pMyzKvGOQsZSt6iZcv/m0KicK0tjjbGfoCe/Cp7OlYRtnrbzuDI/x9hsYJhjVQ+guOMpyHxXVb//k0Roh59hb2EOoKc+FptV+KVLEh8sV6rFfxhuM0ZRzOp6lxNG1aNQiqxnwAOnGdwKBgHQdZciB9g0YIpeiCOi2jATcTNzmmD2IN3e+v/1tNnZkj26Mmg4K5IbiA0uybCqtZegt9Zh3AUyo/LRKusm8oy/i/ZAqQk+9JsuQdO9qJlD4GJ5Dy+x/2hK8DWbFd3AV/szohn93wVbPeohurM+r55HYHwY6GS9geU/0AhtY7d1tAoGACzbJL+Hd/qlEYF39T1pmbpf9X5gx/ywvKZW1k+zBuulz5V7a2W+84kASRBnZ9cO7X8n11EpP55S2IyBnibPPy0rp1H8dKMkmuqjjoGBgxB2N0Jc4+mFxkeszyvF3mX6miaLWZFWEVe2bx5ak4LqZMDgrBdNmIMST3f3hmlDlo8cCgYALykRmdctAPhsBBUQLW/apb6lZ8Qob3fEvmtbV/5eWdCvgE53qqp8OUtBjid8U8D4bADE926t7lUrOVi1ywDgnmxLyJFQS2+FQCob+yxcZllDs3UKMvhxXjvuGKepUqcpcGahDXyG+sCEAoe5LPqTdkKGhkbbnhuYN4dtl8iqpiw==
+  alipay_public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiEBNz32rvYxwANv1YewJUHGluB/O91TxArvFp/lcm7bsqoAF3MVbr4gHZ15ijKpbfHQJ9bdnGd3DW4sznh9BHOERAIkCR59scU7AvpOGTJQHFCK+3bX5/T4NOrpPyJbh0wmrXo7H4IvPkuTb0EEoVSqbEoG+CFLlFc1JkwvPbrFWftR9obXjrjgHepJyfye6jSD8Vw106QigqUWrpFncs3T33LM03ei42qUGesUlUA0UzWuUnT7GC8umXSZMD79oUejlZV7KgxU6G26YG21C4rKkMWaqlAIrevOkr9YJnbqD+n5xRegjWVPukVknqJI6AXmv8I2lmvCzh7zqihIdPQIDAQAB
+  notify_url: http://z35i6z.natappfree.cc/pay/success
+  return_url: http://www.baidu.com
+  sign_type: RSA2
+  gatewayUrl: https://openapi.alipaydev.com/gateway.do
+  charset: utf-8
 
 
 #mybatis别名配置
@@ -35,11 +43,11 @@ spring:
 #默认驼峰转大写策略是true
 mybatis-plus:
        configuration:
-              map-underscore-to-camel-case: true
+          map-underscore-to-camel-case: true
 #主键类型 AUTO:“数据库ID自增”, INPUT:“用户输入ID”, ID_WORKER:“全局唯一ID (数字类型唯一ID)”, UUID:“全局唯一ID UUID”;
        global-config:
-              db-config:
-                    id-type: AUTO
+           db-config:
+               id-type: AUTO
 #mybatis-plus.global-config.db-config.id-type= UUID
 
 #elastrisearch配置

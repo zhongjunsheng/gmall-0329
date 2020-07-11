@@ -21,6 +21,12 @@
     </properties>
 
     <dependencies>
+        <!--阿里支付依赖-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.8.10.ALL</version>
+        </dependency>
         <!--nacos依赖-->
         <dependency>
             <groupId>com.alibaba.boot</groupId>
@@ -50,10 +56,10 @@
             <version>1.2.4</version>
         </dependency>
         <!--springdata集成mongoDb-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
+        <!--</dependency>-->
         <!--rabbitMq和springboot的整合,一个依赖即可-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
