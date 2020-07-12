@@ -21,6 +21,13 @@
     </properties>
 
     <dependencies>
+        <!-- xxl-job -->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
         <!--阿里支付依赖-->
         <dependency>
             <groupId>com.alipay.sdk</groupId>

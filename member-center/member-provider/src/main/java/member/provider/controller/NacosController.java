@@ -17,8 +17,9 @@ public class NacosController {
     @Value("${server.port}")
     private String port;
 
-    //从nacos中获取配置参数指定注解
-    @NacosValue(value = "${city}", autoRefreshed = true)
+    //从nacos中动态获取配置参数指定注解--针对springboot和nacos的集成 ,springcloud则不是这写法
+    //@NacosValue(value = "${city}", autoRefreshed = true)
+    @Value("${city}")
     private String city;
 
     @RequestMapping("nacos")
