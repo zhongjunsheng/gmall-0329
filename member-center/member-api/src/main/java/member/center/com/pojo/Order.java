@@ -39,4 +39,13 @@ public class Order implements Serializable {
         this.desc = desc;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderCode='" + orderCode + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
 }
