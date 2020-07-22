@@ -11,6 +11,8 @@ import member.provider.common.globalException.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,14 @@ public class UserController {
     private UserService userService;
 
 
+
+
+
+    @GetMapping("my/user")
+    public String user222(@Validated  User user){
+
+        return user.getUsername();
+    }
 
 
     @RequestMapping("myTest")
@@ -40,7 +50,7 @@ public class UserController {
     public String myTest2(String name){
 
         if(StringUtil.isEmpty(name)){
-            throw new CustomException("1001","!");
+            throw new CustomException("1001","eeeeggg");
         }
         return name;
     }
