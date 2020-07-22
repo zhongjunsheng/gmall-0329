@@ -28,6 +28,7 @@ public class UserController {
     @RequestMapping("myTest")
     public String myTest(String name){
 
+        int a = 1/0;
         if(StringUtil.isEmpty(name)){
             throw new CustomException("参数不能为空!");
         }

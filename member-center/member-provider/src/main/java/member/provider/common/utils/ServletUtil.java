@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 /**
  * Spring MVC 的帮助类
  *
+ * @author Yangsx
  */
 public class ServletUtil {
 
@@ -66,7 +67,7 @@ public class ServletUtil {
      */
     public static HttpServletRequest getRequest() {
         ServletRequestAttributes requestAttributes =
-            ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes());
+            ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes());
         if (requestAttributes == null) {
             throw new RuntimeException("无法获取HttpServletRequest");
         }
@@ -78,13 +79,13 @@ public class ServletUtil {
      */
     public static HttpServletResponse getResponse() {
         ServletRequestAttributes requestAttributes =
-            ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes());
+            ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes());
         HttpServletResponse response = null;
         if (requestAttributes != null) {
             response = requestAttributes.getResponse();
         }
         if (response == null) {
-            ServletWebRequest request = ((ServletWebRequest)RequestContextHolder.getRequestAttributes());
+            ServletWebRequest request = ((ServletWebRequest) RequestContextHolder.getRequestAttributes());
             if (request != null) {
                 response = request.getResponse();
             }
@@ -142,6 +143,13 @@ public class ServletUtil {
         return ipAddress;
     }
 
+    /**
+     * 获取IP（转成数字类型）
+     */
+    public static long getIpNum(HttpServletRequest request) {
+        String ip = getIp();
+        return NetUtils.ipv4ToLong(ip);
+    }
 
     /**
      * 获取项目的域名根路径
@@ -169,6 +177,7 @@ public class ServletUtil {
     public static boolean isHandlerMethod(Object object) {
         return object instanceof HandlerMethod;
     }
+
 
 
 
