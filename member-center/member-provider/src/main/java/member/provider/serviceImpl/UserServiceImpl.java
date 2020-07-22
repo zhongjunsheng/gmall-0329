@@ -1,8 +1,6 @@
 package member.provider.serviceImpl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import member.center.com.Utils.PageBean;
 import member.center.com.api.UserService;
 import member.center.com.pojo.User;

@@ -18,13 +18,9 @@ public class MemberProviderApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(MemberProviderApplication.class, args);
-        log.info(">>>>>>>> start  project  success1 !!!! <<<<<<<<<<<<");
-        log.info(">>>>>>>> start  project  success2 !!!! <<<<<<<<<<<<");
-        log.info(">>>>>>>> start  project  success3 !!!! <<<<<<<<<<<<");
-        log.debug(">>>>>>>> start  project  success4 !!!! <<<<<<<<<<<<");
-        log.debug(">>>>>>>> start  project  success5 !!!! <<<<<<<<<<<<");
-        log.debug(">>>>>>>> start  project  success6 !!!! <<<<<<<<<<<<");
-        log.debug(">>>>>>>> start  project  success7 !!!! <<<<<<<<<<<<");
+        log.info(">>>>>>>> start  project success !!!! <<<<<<<<<<<<");
+        log.debug(">>>>>>>> start  project success !!!! <<<<<<<<<<<<");
+
     }
 
 }
