@@ -1,22 +1,22 @@
 package member.provider.middleware.rabbitmq;//package member.provider.rabbitMq;
-//
-//import com.rabbitmq.client.Channel;
-//import member.center.com.pojo.Order;
-//import org.springframework.amqp.rabbit.annotation.*;
-//import org.springframework.amqp.support.AmqpHeaders;
-//import org.springframework.messaging.handler.annotation.Headers;
-//import org.springframework.messaging.handler.annotation.Payload;
-//import org.springframework.stereotype.Component;
-//
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//import java.util.Map;
-//
-//@Component
-//public class DelayMsgConsumer {
-//
+
+import com.rabbitmq.client.Channel;
+import member.center.com.pojo.Order;
+import org.springframework.amqp.rabbit.annotation.*;
+import org.springframework.amqp.support.AmqpHeaders;
+import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
+@Component
+public class DelayMsgConsumer {
+
 //    /**
-//     * 延迟消息消费
+//     * 延迟消息消费 --安装插件做法
 //     * @param order
 //     * @param changel
 //     * @param heads
@@ -38,5 +38,19 @@ package member.provider.middleware.rabbitmq;//package member.provider.rabbitMq;
 //        Long tag = (Long)heads.get(AmqpHeaders.DELIVERY_TAG);
 //        changel.basicAck(tag,false); //false 表示手动ack
 //    }
-//
-//}
+
+
+    /**
+     * 延迟消息消费 -- 不安装插件做法
+     * @param msg
+     * @param changel
+     * @param heads
+     * @throws Exception
+     */
+    @RabbitListener(queues = {"ORDER-DEAD-QUEUE"})
+    public void  getDelayMsg2(String  msg) {
+        System.out.println("收到的延迟消息的时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        System.out.println("收到的延迟信息是:"+ msg);
+    }
+
+}

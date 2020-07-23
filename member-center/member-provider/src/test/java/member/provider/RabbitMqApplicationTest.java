@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,20 @@ import java.util.Map;
 public class RabbitMqApplicationTest  {
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+
+    @Test
+    public void delayMsgSendTest(){
+
+        // 订单创建之后，在响应之前发送延时消息队列，以达到定时关单的效果
+        this.rabbitTemplate.convertAndSend("GMALL-ORDER-EXCHANGE", "order.ttl", "这是延时队列消息");
+        System.out.println("当前时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+
+    }
+
+
+
+
     @Test
     public void directSendTest(){
         rabbitTemplate.convertAndSend("direct_exchange","direct","这是精确匹配测试");
