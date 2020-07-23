@@ -3,10 +3,12 @@
 //import jodd.util.StringUtil;
 //import member.provider.annotation.Cache;
 //import org.aspectj.lang.JoinPoint;
+//import org.aspectj.lang.ProceedingJoinPoint;
 //import org.aspectj.lang.annotation.Around;
 //import org.aspectj.lang.annotation.Aspect;
 //import org.aspectj.lang.annotation.Before;
 //import org.aspectj.lang.reflect.MethodSignature;
+//import org.aspectj.lang.reflect.Pointcut;
 //import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 //import org.springframework.expression.ExpressionParser;
 //import org.springframework.expression.spel.standard.SpelExpressionParser;
@@ -31,8 +33,8 @@
 //    @Around("@annotation(cache)")//这个表示拦截所有带有@Cache的注解,推荐使用这个
 //    public void intercept(JoinPoint joinPoint, Cache cache) throws Throwable {
 //        System.out.println("进入切面=================");
-//
-//        Object[] args = joinPoint.getArgs();//参数列表
+//        //参数列表
+//        Object[] args = joinPoint.getArgs();
 //        MethodSignature ms = (MethodSignature) joinPoint.getSignature();
 //        Method method = ms.getMethod();
 //        //获取动态传过来的业务参数
@@ -55,7 +57,9 @@
 //        //System.out.println("这是执行拦截目标方法之后执行的操作");
 //
 //        System.out.println("切面跑完=================");
-//
+//        ProceedingJoinPoint point = (ProceedingJoinPoint) joinPoint;
+//        //执行目标方法
+//        point.proceed();
 //    }
 //
 //    /**

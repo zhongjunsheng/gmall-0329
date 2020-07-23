@@ -1,4 +1,4 @@
-package member.provider.aop;//package member.provider.aop;
+//package member.provider.aop;//package member.provider.aop;
 //
 //import org.springframework.boot.SpringApplication;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +14,7 @@ package member.provider.aop;//package member.provider.aop;
 //	public static void main(String[] args) {
 //		ConfigurableApplicationContext ct= SpringApplication.run(AopApplication.class, args);
 //		UserDao bean = ct.getBean(UserDao.class);
-//		ct.getBean(UserDao.class).addUser("allen-pp33", "123456--33");
+//		ct.getBean(UserDao.class).addUser("allen-pp666", "123456--666");
 //		ct.close();
 //	}
 //
