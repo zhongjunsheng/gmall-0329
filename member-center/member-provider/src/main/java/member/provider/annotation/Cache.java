@@ -16,5 +16,5 @@ public @interface Cache {
 	 * @return
 	 */
 	String name() default "";
-	String pwd() default "";
+	String pwd() default "123456";
 }
