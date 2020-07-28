@@ -6,5 +6,5 @@ package member.provider.designpattern;
  */
 public interface StrategyService {
 
-    void operate();
+    String operate();
 }

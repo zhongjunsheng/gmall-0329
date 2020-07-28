@@ -3,12 +3,21 @@ package member.provider.Java8Test;
 import java.util.List;
 import java.util.Optional;
 
+import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import org.junit.Test;
 
 
 public class Java8OptionalTest {
-	
-	
+
+
+
+	@Test
+	public void test3() {
+		String str = null;
+		String string = Optional.ofNullable(str).orElseThrow(() -> new RuntimeException("DD"));
+		System.out.println(str);
+	}
+
 	@Test
 	public void test1() {
 		Optional<User> op =  Optional.of(null); //不能接收null的参数

@@ -26,7 +26,7 @@ package member.provider.middleware.rabbitmq;//package member.provider.rabbitMq;
 //        /**
 //         *  消息的可靠发送步骤
 //         *
-//         *  1.调用Mq api 发送消息前 先把消息本地入库(mysql) 并打上未发送的标识
+//         *  1.调用Mq api 发 送消息前 先把消息本地入库(mysql) 并打上未发送的标识
 //         *  2.判断roker server的消息ack情况
 //         *  3.如果 成功 ack则把数据库的标识改为发送成功;  否则会用定时任务轮询发送
 //         */
