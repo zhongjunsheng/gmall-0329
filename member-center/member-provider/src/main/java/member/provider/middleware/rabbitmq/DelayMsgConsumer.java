@@ -40,17 +40,17 @@ public class DelayMsgConsumer {
 //    }
 
 
-    /**
-     * 延迟消息消费 -- 不安装插件做法
-     * @param msg
-     * @param changel
-     * @param heads
-     * @throws Exception
-     */
-    @RabbitListener(queues = {"ORDER-DEAD-QUEUE"})
-    public void  getDelayMsg2(String  msg) {
-        System.out.println("收到的延迟消息的时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        System.out.println("收到的延迟信息是:"+ msg);
-    }
+//    /**
+//     * 延迟消息消费 -- 不安装插件做法
+//     * @param msg
+//     * @param changel
+//     * @param heads
+//     * @throws Exception
+//     */
+//    @RabbitListener(queues = {"ORDER-DEAD-QUEUE"})
+//    public void  getDelayMsg2(String  msg) {
+//        System.out.println("收到的延迟消息的时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+//        System.out.println("收到的延迟信息是:"+ msg);
+//    }
 
 }

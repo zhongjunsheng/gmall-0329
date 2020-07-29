@@ -1,21 +1,47 @@
 package member.provider.product.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import member.center.com.Utils.PageBean;
 import member.provider.common.entity.Condition;
+import member.provider.common.globalException.ResultBody;
 import member.provider.product.entity.Product;
+import member.provider.product.entity.ProductVo;
 import member.provider.product.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Api(tags= "商品模块Api")
 @RestController
 public class ProductController {
 
+
     @Autowired
     private IProductService productService;
+
+
+    /**
+     * swagger2使用案例
+     * @param product
+     * @return
+     */
+    @PostMapping("productMsg")
+    @ApiOperation(value = "获取商品详情",notes = "获取商品详情")
+    public ResultBody<ProductVo> getProductDetail(@RequestBody Product product){
+        ProductVo productVo = ProductVo.builder()
+                .address("gz").amount("10").productName("apple")
+                .product(new Product().setId(1).setNum(10).setUid(11).setPoductName("hh"))
+                .userName("allen")
+                .build();
+        return ResultBody.success(productVo);
+    }
 
     @RequestMapping("product")
     public Object getById(){

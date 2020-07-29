@@ -19,22 +19,22 @@ spring:
       port: 6379
       timeout: 3000
 
-  rabbitmq:
-    host: 192.168.106.128
-    username: guest
-    password: guest
-    port: 5672
-    publisher-confirms: true
-    publisher-returns:  true
-    template:
-      mandatory:  true
-    listener:
-      direct:
-        acknowledge-mode: manual
-      simple:
-        acknowledge-mode: manual
-        concurrency: 5
-        max-concurrency: 10
+#  rabbitmq:
+#    host: 192.168.106.128
+#    username: guest
+#    password: guest
+#    port: 5672
+#    publisher-confirms: true
+#    publisher-returns:  true
+#    template:
+#      mandatory:  true
+#    listener:
+#      direct:
+#        acknowledge-mode: manual
+#      simple:
+#        acknowledge-mode: manual
+#        concurrency: 5
+#        max-concurrency: 10
 
 #  data:
 #    mongodb:

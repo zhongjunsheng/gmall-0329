@@ -1,13 +1,16 @@
 package member.provider.common.globalException;
 
 import com.alibaba.fastjson.JSON;
-import org.omg.CORBA.OBJECT_NOT_EXIST;
+import lombok.Data;
+
+import java.io.Serializable;
 
 
 /**
  * 统一响应体
  */
-public class ResultBody {
+@Data
+public class ResultBody<T>  implements Serializable {
     /**
      * 响应代码
      */
@@ -21,7 +24,7 @@ public class ResultBody {
     /**
      * 响应结果
      */
-    private Object data;
+    private T data;
 
     public ResultBody() {
     }
@@ -31,27 +34,14 @@ public class ResultBody {
         this.message = commonEnum.getResultMsg();
     }
 
-    public String getCode() {
-        return code;
+    public ResultBody(T data) {
+        this.code = "200";
+        this.message = "OK";
+        this.data = data;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public ResultBody setData(Object data) {
+    public ResultBody setData(T data) {
         this.data = data;
         return this;
     }

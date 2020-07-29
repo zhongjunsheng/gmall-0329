@@ -2,6 +2,7 @@ package member.provider.product.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 
@@ -14,15 +15,19 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId("id")
+    @ApiModelProperty(value = "主键id")
     private Integer id;
 
     @TableField("poduct_name")
+    @ApiModelProperty(value = "商品名称")
     private String poductName;
 
     @TableField("num")
+    @ApiModelProperty(value = "购买数量")
     private Integer num;
 
     @TableField("uid")
+    @ApiModelProperty(value = "买家ID")
     private Integer uid;
 
     /**
