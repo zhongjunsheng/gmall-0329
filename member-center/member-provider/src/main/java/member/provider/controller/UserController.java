@@ -6,8 +6,11 @@ import member.center.com.Utils.PageBean;
 import member.center.com.api.UserService;
 import member.center.com.pojo.Member;
 import member.center.com.pojo.User;
+import member.provider.MemberProviderApplication;
 import member.provider.common.globalException.CommonEnum;
 import member.provider.common.globalException.CustomException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +19,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class UserController {
 
+
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
 
@@ -38,6 +44,7 @@ public class UserController {
     @RequestMapping("myTest")
     public String myTest(String name){
 
+        log.info("hello Elk "  + new Date());
         int a = 1/0;
         if(StringUtil.isEmpty(name)){
             throw new CustomException("参数不能为空!");

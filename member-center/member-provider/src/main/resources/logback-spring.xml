@@ -74,8 +74,9 @@
         </rollingPolicy>
     </appender>
 
-    <!--输出到logstash的appender-->
+    <!--输出到logstash(ELK)的appender-->
     <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <!--logstashf服务地址-->
         <destination>192.168.106.128:4560</destination>
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
@@ -85,7 +86,7 @@
         <appender-ref ref="infoAppender"/>
         <appender-ref ref="warnAppender"/>
         <appender-ref ref="errorAppender"/>
-        <appender-ref ref="logstash"/> <!--输出到logstash-->
+        <appender-ref ref="logstash"/> <!--输出到logstash(ELK)-->
     </root>
     <!--基础包路径:member.provider路径下的日志登记是debug-->
     <logger name="member.provider" level="debug"/>
