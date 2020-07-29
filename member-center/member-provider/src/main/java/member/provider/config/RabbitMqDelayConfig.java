@@ -14,12 +14,16 @@
 // * 延时队列消费通过死信交换机转发到死信队列从而实现延时消费
 // *
 // * ttl   ----   dead
+// *
+// * 这里的配置是先把消息发送到监听 交换机是GMALL-ORDER-EXCHANGE 路由是order.ttl 的队列(没人消费),在没人消费的情况下 会把他转发到死心队列
+// *
+// * (所以这里需要做 转发绑定)  -- 具体是转发到监听交换机是GMALL-ORDER-EXCHANGE 路由是order.dead的队列 接着设定消费的延时时间
 // */
 //@Configuration
 //public class RabbitMqDelayConfig {
 //
 //    /**
-//     * 1.ttl队列配置转发路由机交换机信息
+//     * 1.ttl队列配置转发死信路由和死信交换机信息的绑定关系
 //     * @return
 //     */
 //    @Bean("ORDER-TTL-QUEUE")
@@ -29,7 +33,7 @@
 //        map.put("x-dead-letter-exchange", "GMALL-ORDER-EXCHANGE");
 //        //ttl队列绑定的转发死信路由
 //        map.put("x-dead-letter-routing-key", "order.dead");
-//        //延时时间
+//        //延时时间-单位毫秒
 //        map.put("x-message-ttl", 120000);
 //        return new Queue("ORDER-TTL-QUEUE", true, false, false, map);
 //    }
