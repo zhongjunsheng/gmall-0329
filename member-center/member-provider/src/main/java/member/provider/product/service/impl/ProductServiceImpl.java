@@ -72,7 +72,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         Product parent  = new Product();
         parent.setPoductName("parent").setNum(10);
         this.save(parent);
-        //child();
+        //child(); //方法内的调用就算child()加了事务注解也不会生效
         try{
             // 代理类调用--从aop上下文中获取代理对象(方法内的调用 事务生效)
             IProductService   proxy   = (IProductService)AopContext.currentProxy();
