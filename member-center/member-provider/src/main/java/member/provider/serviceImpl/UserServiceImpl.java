@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    //@Transactional
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public int save(User user) {
         user = new User();
         user.setUsername("allen").setPwd("123456");

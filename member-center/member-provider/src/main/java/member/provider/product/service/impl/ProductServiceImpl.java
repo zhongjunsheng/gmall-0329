@@ -60,27 +60,33 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
 
     @Override
-    @Transactional
     public void parent() {
+        /**
+         * 事务生效必须进过代理对象才能生效
+         * 方法内的调用 应为没有进过代理所以事务不生效
+         *
+         */
 
-//       try{
-//           // 代理类调用--从aop上下文中获取代理对象
-//           ProductServiceImpl   proxy   = (ProductServiceImpl)AopContext.currentProxy();
-//           System.out.println(proxy.getClass().getName());
-//           proxy.child();
-//       }catch (Exception e){
-//           System.out.println(e);
-//       }
-//
 
-        child();
+
         Product parent  = new Product();
         parent.setPoductName("parent").setNum(10);
         this.save(parent);
+        //child();
+        try{
+            // 代理类调用--从aop上下文中获取代理对象(方法内的调用 事务生效)
+            IProductService   proxy   = (IProductService)AopContext.currentProxy();
+            System.out.println(proxy.getClass().getName());
+            proxy.child();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 
 
     @Override
+    @Transactional
     public void child() {
         User user = new User();
         user.setUsername("allen").setPwd("123456");
