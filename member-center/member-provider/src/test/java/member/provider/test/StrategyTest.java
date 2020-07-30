@@ -20,7 +20,7 @@ public class StrategyTest {
     @Test
     public void operate(){
         String channelCode = "BD";
-        StrategyService strategyService = strategyContext.getTargertService(channelCode);
+        StrategyService strategyService = strategyContext.getTargetService(channelCode);
         String operate = strategyService.operate();
         System.out.println(operate);
     }

@@ -15,7 +15,7 @@ public class StrategyContext {
     private StrategyContext strategyContext;
 
 
-    public StrategyService  getTargertService(String channelCode){
+    public StrategyService  getTargetService(String channelCode){
         ChannelEnum channelEnum = null;
         ChannelEnum[] values = ChannelEnum.values();
         for (ChannelEnum value : values) {
