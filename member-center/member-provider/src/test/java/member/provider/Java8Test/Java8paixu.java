@@ -53,10 +53,10 @@ public class Java8paixu {
         List<String> list1 = new ArrayList<String>();
         List<String> list2 = new ArrayList<String>();
         //给list1赋值
-    /*    list1.add("测");
+        list1.add("测");
         list1.add("试");
         list1.add("一");
-        list1.add("下");*/
+        list1.add("下");
         //给list2赋值
         list2.add("合");
         list2.add("并");

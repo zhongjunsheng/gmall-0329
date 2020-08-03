@@ -1,13 +1,7 @@
 package member.provider.Java8Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -171,9 +165,21 @@ public class Java8StreamApiTest {
 			int sum = list.stream().mapToInt(user -> user.getAge()).sum(); //年龄总和
 			System.out.println(sum);
 		}
-	
-		
-		
+
+	@Test
+	//求和
+	public  void test11() {
+		Map<String,String> map = new HashMap<>();
+		map.put("name","gg");
+		String name = map.computeIfAbsent("name", k -> "allen");
+
+		System.out.println(name);
+
+	}
+
+
+
+
 	//public static void main(String[] args) throws InterruptedException {
 		
 
