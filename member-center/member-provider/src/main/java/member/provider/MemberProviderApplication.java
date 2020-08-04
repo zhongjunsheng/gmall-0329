@@ -1,7 +1,5 @@
 package member.provider;
 
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
-import member.provider.common.utils.ServletUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
