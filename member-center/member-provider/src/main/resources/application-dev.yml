@@ -40,10 +40,12 @@ spring:
     mongodb:
       host: 192.168.106.128
       port: 27017
-      database: school
-    elasticsearch:
-      cluster-nodes: 127.0.0.1:9300
-      cluster-name: elasticsearch
+  elasticsearch:
+    rest:
+      uris: 192.168.106.128:9200   ##注意这是ES7.x的配置方式, 对应springboot版本必须是2.2.x才兼容
+#     uris: 192.168.106.128:9200,192.168.106.128:9202,192.168.106.128:9203
+#     password: 123456   #可无
+#     username: elastic  #可无
 alipay:
   app_id: 2016102000727283
   merchant_private_key: MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCQKZeWbwlQVfMEJsJNlF1SLpHlb9m/kBo3wIIqaK24+69tanh6EvMQIIJWjz/lpB/yd2uk2F67cn7gGYB7dvdKxu7g3/8JmkKs9GM/BtrvtFhrxHwytjiTNPZJjs8fWcX3zzif+dXdKiFT6zPLt+PV0S81ZdVfCUqXrFO1AFC7gvf/cRXsq53PGy5C+CvsbnFmn05bUwldwoFoDL2oSA3x710KzpNFi0XWR/Wf8KdiucNXbgq9Q+Y/1WOCRFAhwe8kFFnaNS8QKamnHi8bVJRiqD2eCbrfPty9z0/VjW93RasC2fisYz/qKSue8cYyvaZ/wtiqfB+vjnbiDrOdm9pjAgMBAAECggEAZeCeubbaVCWJSYPCiGSy1mMGw6eZsCC8Bm5LDoFPU4y52o8FeO9vShRPR7CQLU8hLI5sSeCGgd1WADTFcXsPI48WPWDOsRCM0gEbKe1ER2WhnvcJ9iSEMrOY4T7E7JjaqFeO4q8CDfu59b4fqnXX0sCzpf7DHRhJ2In11dHVO80tb7azcxR1G/ZqB4OMF6RfX26+6YWLiCscT9oxx1w0WjlXDdEzjv9oB/cOcV0ZTnVf+0p2Mddru3nTOqISIdzJak0lJyDna0XTKbt8u62PmaKbIIYUL4P9PyPIMTAk+xXE+QBL59QMRXZvER0Eob9SoApUkxvc64gniSpYFY8HsQKBgQDgnhea7Mnd98LiA4Z8NNbWGks5egkNrD0GQC5lpDCo3GLE7sDm9UBuT51T3YMSiEZYkvAsOVm+Yhsyfpdi8gkOcQIGuUi+mJxzfCGUSRj/RSjjz4FMUxQNIkD10CeyiyngVYCtHegJIlqCPAWEytXuoh6XLg0dIIE/CX+siniKdQKBgQCkTdveEHnSDrX6TDcFE7ubaOenCU4zSl0pMyzKvGOQsZSt6iZcv/m0KicK0tjjbGfoCe/Cp7OlYRtnrbzuDI/x9hsYJhjVQ+guOMpyHxXVb//k0Roh59hb2EOoKc+FptV+KVLEh8sV6rFfxhuM0ZRzOp6lxNG1aNQiqxnwAOnGdwKBgHQdZciB9g0YIpeiCOi2jATcTNzmmD2IN3e+v/1tNnZkj26Mmg4K5IbiA0uybCqtZegt9Zh3AUyo/LRKusm8oy/i/ZAqQk+9JsuQdO9qJlD4GJ5Dy+x/2hK8DWbFd3AV/szohn93wVbPeohurM+r55HYHwY6GS9geU/0AhtY7d1tAoGACzbJL+Hd/qlEYF39T1pmbpf9X5gx/ywvKZW1k+zBuulz5V7a2W+84kASRBnZ9cO7X8n11EpP55S2IyBnibPPy0rp1H8dKMkmuqjjoGBgxB2N0Jc4+mFxkeszyvF3mX6miaLWZFWEVe2bx5ak4LqZMDgrBdNmIMST3f3hmlDlo8cCgYALykRmdctAPhsBBUQLW/apb6lZ8Qob3fEvmtbV/5eWdCvgE53qqp8OUtBjid8U8D4bADE926t7lUrOVi1ywDgnmxLyJFQS2+FQCob+yxcZllDs3UKMvhxXjvuGKepUqcpcGahDXyG+sCEAoe5LPqTdkKGhkbbnhuYN4dtl8iqpiw==
@@ -54,6 +56,7 @@ alipay:
   gatewayUrl: https://openapi.alipaydev.com/gateway.do
   charset: utf-8
 
+#####xxl-job配置
 #xxl:
 #  job:
 #    admin:
@@ -82,7 +85,7 @@ mybatis-plus:
                id-type: AUTO
 #mybatis-plus.global-config.db-config.id-type= UUID
 
-#elastrisearch配置
+#elastrisearch配置--6.x,5.x版本是这么配置  7.x就不是了
 #spring.data.elasticsearch.cluster-name=elasticsearch
 #spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300
 #集群节点 逗号隔开
@@ -116,8 +119,6 @@ mybatis-plus:
 #spring.data.mongodb.host=192.168.127.130
 #spring.data.mongodb.port=27017
 #spring.data.mongodb.database=school
-
-
 
 
 #redisConfig 配置

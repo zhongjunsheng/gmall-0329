@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import java.util.Date;
+
 @SpringBootApplication
 //@NacosPropertySource(dataId = "example", autoRefreshed = true)
 //@MapperScan("member.provider.mapper")
@@ -17,8 +19,8 @@ public class MemberProviderApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(MemberProviderApplication.class, args);
-        log.info(">>>>>>>> start  project success !!!! <<<<<<<<<<<<");
-        log.debug(">>>>>>>> start  project success !!!! <<<<<<<<<<<<");
+        log.info(">>>>>>>> start  project success !!!! <<<<<<<<<<<<" + new Date());
+        log.debug(">>>>>>>> start  project success !!!! <<<<<<<<<<<<"+ new Date());
 
     }
 
