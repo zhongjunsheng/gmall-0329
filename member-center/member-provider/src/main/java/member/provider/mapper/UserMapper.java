@@ -9,7 +9,6 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
-   // @Select("select username from user where id = #{id}")
     String getUserNameById(Integer id);
 
     User getUserById(int id);

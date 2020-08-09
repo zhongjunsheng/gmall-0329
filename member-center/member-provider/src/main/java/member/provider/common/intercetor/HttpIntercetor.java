@@ -1,6 +1,6 @@
 //package member.provider.common.intercetor;
 //
-//import member.provider.annotation.Cache;
+//import member.provider.common.annotation.Cache;
 //import org.springframework.web.method.HandlerMethod;
 //import org.springframework.web.servlet.HandlerInterceptor;
 //import org.springframework.web.servlet.ModelAndView;

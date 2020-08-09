@@ -1,8 +1,8 @@
 package member.provider.test;
 
 
-import member.provider.designpattern.StrategyContext;
-import member.provider.designpattern.StrategyService;
+import member.provider.biz.designpattern.StrategyContext;
+import member.provider.biz.designpattern.StrategyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

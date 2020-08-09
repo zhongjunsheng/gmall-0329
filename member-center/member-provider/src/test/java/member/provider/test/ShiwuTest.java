@@ -1,6 +1,6 @@
 package member.provider.test;
 
-import member.provider.product.service.IProductService;
+import member.provider.biz.product.service.IProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

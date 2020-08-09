@@ -3,8 +3,8 @@
 //import com.alibaba.fastjson.JSON;
 //import member.center.com.pojo.School2;
 //import member.center.com.pojo.Student;
-//import member.provider.serviceImpl.MongoDbService;
-//import member.provider.serviceImpl.MongoSchoolService;
+//import member.provider.serviceimpl.MongoDbService;
+//import member.provider.serviceimpl.MongoSchoolService;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package member.provider.controller;
 
-import member.provider.annotation.Cache;
+import member.provider.common.annotation.Cache;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
