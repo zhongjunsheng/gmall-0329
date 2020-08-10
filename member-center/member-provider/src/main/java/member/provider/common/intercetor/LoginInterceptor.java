@@ -47,13 +47,14 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         // 获取cookie中的token信息（jwt）及userKey信息
         UserInfo userInfo = new UserInfo();
         String token = CookieUtils.getCookieValue(request, jwtProperties.getCookieName());
-        if (StringUtils.isNotBlank(token)) {
-            //解析token信息(私钥生产token,公钥解密Token)
-            Map<String, Object> infoFromToken = JwtUtils.getInfoFromToken(token, jwtProperties.getPublicKey());
-            userInfo.setId(new Long(infoFromToken.get("id").toString()));
-
-            THREAD_LOCAL.set(userInfo);
+        if (StringUtils.isBlank(token)) {
+           throw  new CustomException(CommonEnum.NEED_LOGIN);
         }
+        //解析token信息(私钥生产token,公钥解密Token)
+        Map<String, Object> infoFromToken = JwtUtils.getInfoFromToken(token, jwtProperties.getPublicKey());
+        userInfo.setId(new Long(infoFromToken.get("id").toString()));
+
+        THREAD_LOCAL.set(userInfo);
 
         return super.preHandle(request, response, handler);
     }

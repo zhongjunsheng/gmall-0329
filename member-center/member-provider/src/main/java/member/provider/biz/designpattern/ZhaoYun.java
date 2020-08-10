@@ -3,11 +3,28 @@ package member.provider.biz.designpattern;
 import member.provider.biz.designpattern.impl.BackDook;
 import member.provider.biz.designpattern.impl.BlackEnemy;
 import member.provider.biz.designpattern.impl.GivenGreenLight;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 实际效果
  */
+@Component
 public class ZhaoYun {
+
+
+    @Autowired
+    private StrategyContext strategyContext;
+
+    public void operate(){
+        String channelCode = "BD";
+        StrategyService strategyService = strategyContext.getTargetService(channelCode);
+        String operate = strategyService.operate();
+        System.out.println(operate);
+    }
+
+
+
 
     public static void main(String[] args) {
         Context context;

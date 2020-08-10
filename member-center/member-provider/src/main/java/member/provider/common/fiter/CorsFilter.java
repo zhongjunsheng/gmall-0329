@@ -15,6 +15,7 @@ public class CorsFilter implements Filter {
      * 处理跨域问题过滤器
      */
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpServletRequest request = (HttpServletRequest) req;
@@ -29,11 +30,12 @@ public class CorsFilter implements Filter {
 
 
 
+    @Override
     public void init(FilterConfig filterConfig) {
     }
 
 
-
+    @Override
     public void destroy() {
     }
 }

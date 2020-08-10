@@ -9,6 +9,7 @@ import member.provider.common.utils.CookieUtils;
 import member.provider.config.JwtProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class AuthController {
      * @return
      */
     @RequestMapping("login")
-    public ResultBody<Object> accredit(@RequestParam("username")String username, @RequestParam("password")String password
+    public ResultBody accredit(@RequestParam("username")String username, @RequestParam("password")String password
             , HttpServletRequest request, HttpServletResponse response){
 
         //token为空说明登录校验出错--否则就是登录成功并返回jwt生成的token
@@ -49,6 +50,19 @@ public class AuthController {
 
         throw new CustomException("用户名或者密码错误!");
     }
+
+
+    /**
+     * 注销登录
+     * @return
+     */
+    @RequestMapping("loginOut")
+    public ResultBody loginOut(HttpServletRequest request, HttpServletResponse response){
+        CookieUtils.removeCookie(response,jwtProperties.getCookieName());
+        return ResultBody.success();
+    }
+
+
 
     @RequestMapping("authLogin")
     public String  tt(){

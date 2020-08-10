@@ -136,10 +136,13 @@ public final class CookieUtils {
 				cookieValue = URLEncoder.encode(cookieValue, encodeString);
 			}
 			Cookie cookie = new Cookie(cookieName, cookieValue);
-			if (cookieMaxAge != null && cookieMaxAge > 0)
+			if (cookieMaxAge != null && cookieMaxAge > 0){
 				cookie.setMaxAge(cookieMaxAge);
-			if (null != request)// 设置域名的cookie
+			}
+			//设置域名的cookie
+			if (null != request) {
 				cookie.setDomain(getDomainName(request));
+			}
 			cookie.setPath("/");
 
 			if(httpOnly != null) {
@@ -183,6 +186,21 @@ public final class CookieUtils {
 			domainName = ary[0];
 		}
 		return domainName;
+	}
+
+
+
+	/**
+	 * 删除cookie
+	 *
+	 * @param response
+	 * @param name
+	 */
+	public static void removeCookie(HttpServletResponse response, String name) {
+		Cookie uid = new Cookie(name, null);
+		uid.setPath("/");
+		uid.setMaxAge(0);
+		response.addCookie(uid);
 	}
 
 }
