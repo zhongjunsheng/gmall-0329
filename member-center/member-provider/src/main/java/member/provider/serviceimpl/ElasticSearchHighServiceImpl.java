@@ -3,6 +3,7 @@ package member.provider.serviceimpl;
 import member.center.com.api.ElasticSearchHighService;
 import member.center.com.pojo.Item;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -17,6 +18,7 @@ import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
 
 
     @Override
-    public List<Item> findByTitleAndHighlightAdnPageable(String title, int page, int size) {
+    public List<Item> findByTitleAndHighlightAdnPageable(String queryName, int page, int size) {
 
         HighlightBuilder.Field nameField = new HighlightBuilder
                 .Field("*")
@@ -44,13 +46,33 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
 
         //多字段高亮查询，可同时在title和brand查询 对应实体类中的属性名
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
-                .withQuery(QueryBuilders.multiMatchQuery(title, "title", "brand"))  //要高亮搜索的Filed
+                //.withQuery(QueryBuilders.multiMatchQuery(queryName, "title", "brand").analyzer("ik_smart"))                //在指定的字段field里高亮模糊搜索(分词)--最常用
+                .withQuery(QueryBuilders.multiMatchQuery(queryName, "title", "brand").analyzer("ik_max_word"))      //在指定的字段field里高亮模糊搜索(分词)--最常用
+              //.withQuery(QueryBuilders.queryStringQuery(queryName))                                                        //和match相思不过不在分field 而是在所有field里高亮模糊搜索(分词)--范围最广
                 .withPageable(PageRequest.of(page - 1, size))
                 .withHighlightFields(nameField)
                 .build();
         AggregatedPage<Item> items = elasticsearchRestTemplate.queryForPage(nativeSearchQuery, Item.class, searchResultMapper());
 
         return items.getContent();
+    }
+
+    @Override
+    public List<Item> searchTerm(String keyWord) {
+        // 精确查找
+        BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
+        boolQueryBuilder.must(QueryBuilders.termsQuery("category.keyword",keyWord));
+        SearchQuery searchQuery = new NativeSearchQueryBuilder()
+                .withQuery(boolQueryBuilder)
+                .withPageable(PageRequest.of(0, 100))
+                .build();
+
+//        SearchQuery searchQuery = new NativeSearchQueryBuilder()
+//                .withQuery(QueryBuilders.queryStringQuery(keyword).defaultField(field))
+//                .withPageable(PageRequest.of(0, 100))
+//                .build();
+
+        return  elasticsearchRestTemplate.queryForList(searchQuery, Item.class);
     }
 
 
@@ -78,7 +100,7 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
                         item.setTitle(titleHighlight);
                     }
                     if (highlightFields.get("brand") != null) {
-                        String brandHighlight = highlightFields.get("description").getFragments()[0].toString();
+                        String brandHighlight = highlightFields.get("brand").getFragments()[0].toString();
                         item.setBrand(brandHighlight);
                     }
                     products.add(item);

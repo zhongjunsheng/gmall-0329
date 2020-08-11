@@ -7,6 +7,10 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+
+/**
+ * 7.x后不再支持一个index多个type 只支持一个index一个type
+ */
 @Data
 @Document(indexName = "item",type = "product",shards = 3,replicas = 0)  //申明index(库)和type(表)
 public class Item {

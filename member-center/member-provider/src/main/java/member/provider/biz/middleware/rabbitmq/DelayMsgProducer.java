@@ -28,7 +28,7 @@ package member.provider.biz.middleware.rabbitmq;//package member.provider.rabbit
 //         *
 //         *  1.调用Mq api 发 送消息前 先把消息本地入库(mysql) 并打上未发送的标识
 //         *  2.判断roker server的消息ack情况
-//         *  3.如果 成功 ack则把数据库的标识改为发送成功;  否则会用定时任务轮询发送
+//         *  3.如果 成功 ack则把数据库的标识改为发送成功/定时任务轮询发送
 //         */
 //        System.out.println("发送内容 : " + order);
 //        rabbitTemplate.setReturnCallback(this);
