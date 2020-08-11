@@ -19,11 +19,6 @@ public class MemberProviderApplication {
     private static final Logger log = LoggerFactory.getLogger(MemberProviderApplication.class);
 
     public static void main(String[] args) {
-
         SpringApplication.run(MemberProviderApplication.class, args);
-        log.info(">>>>>>>> start  project success !!!! <<<<<<<<<<<<" + new Date());
-        log.debug(">>>>>>>> start  project success !!!! <<<<<<<<<<<<"+ new Date());
-
     }
-
 }

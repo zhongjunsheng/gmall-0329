@@ -2,6 +2,7 @@ package member.provider.biz.middleware.rabbitmq;//package member.provider.rabbit
 
 
 import com.rabbitmq.client.Channel;
+import lombok.extern.slf4j.Slf4j;
 import member.center.com.pojo.Order;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.*;
@@ -29,7 +30,7 @@ public class MsgAnnocationConsumer {
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value ="direct_queue",durable = "true"),  //表示队列信息
             exchange = @Exchange(value = "direct_exchange",durable = "ture",//绑定的交换机名称
-                    type = ExchangeTypes.DIRECT,//交换机类型 direct，topic，fanout
+                    type = ExchangeTypes.DIRECT,
                     ignoreDeclarationExceptions = "true"),  //支持过滤
             key = "direct"  //表示路由信息
     ))
@@ -40,8 +41,11 @@ public class MsgAnnocationConsumer {
         Long tag = (Long)message.getHeaders().get(AmqpHeaders.DELIVERY_TAG);
         //告诉服务器说明这条消息以及被消费了，否则服务器会以为消息没有被消费 会继续发送
         //消息ack  ---- 确认已经消费
-        changel.basicAck(tag,false); //mulyiple 表示批量
-        //不ack  --最后一个参数 true 表示消息重回队列 一直重试消费,假如一直没有消费成功则会一直刷会导致cpu急剧上升
+        // false只确认当前一个消息收到，true确认所有consumer获得的消息
+        changel.basicAck(tag,false);
+        //不ack
+        //第二个false表示NAck当前消息，true表示所有consumer消息都不Ack
+        //第三个参数 true 表示消息重回队列 一直重试消费,假如一直没有消费成功则会一直刷会导致cpu急剧上升, false表示不重回队列进入dead queue
         //changel.basicNack(tag,false,true);
     }
 

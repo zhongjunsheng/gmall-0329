@@ -19,33 +19,37 @@ spring:
       port: 6379
       timeout: 3000
 
-#  rabbitmq:
-#    host: 192.168.106.128
-#    username: guest
-#    password: guest
-#    port: 5672
-#    publisher-confirms: true
-#    publisher-returns:  true
-#    template:
-#      mandatory:  true
-#    listener:
-#      direct:
-#        acknowledge-mode: manual
-#      simple:
-#        acknowledge-mode: manual
-#        concurrency: 5
-#        max-concurrency: 10
+#  data:
+#    mongodb:
+#      host: 192.168.106.128
+#      port: 27017
+#  elasticsearch:
+#    rest:
+#      uris: 192.168.106.128:9200   ##注意这是ES7.x的配置方式, 对应springboot版本必须是2.2.x才兼容
+#      uris: 192.168.106.128:9200,192.168.106.128:9202,192.168.106.128:9203
 
-  data:
-    mongodb:
-      host: 192.168.106.128
-      port: 27017
-  elasticsearch:
-    rest:
-      uris: 192.168.106.128:9200   ##注意这是ES7.x的配置方式, 对应springboot版本必须是2.2.x才兼容
-    # uris: 192.168.106.128:9200,192.168.106.128:9202,192.168.106.128:9203
-    # password: 123456   #可无
-    # username: elastic  #
+  rabbitmq:
+    host: 192.168.127.131
+    username: guest
+    password: guest
+    port: 5672
+   # publisher-confirms: true
+    publisher-confirm-type: correlated  #消息投递到到交换器Exchange后触发回调
+    publisher-returns:  true            #消息投递从交换器发送到对应队列失败时触发回调
+    template:
+      mandatory:  true             #开启接收不到路由的消息开关
+    listener:
+      direct:
+        acknowledge-mode: manual  #手动ack--可无
+      simple:
+        acknowledge-mode: manual   #消费手动ack
+        retry:
+          enabled: true       #开启消费重发重试
+          max-attempts: 5     #最大次数
+          max-interval: 2000  #重试间隔2000ms
+
+
+
 
 ####阿里支付配置
 alipay:
@@ -80,6 +84,28 @@ gmall:
 #      logpath: /xxl-job-logs/
 #      appname: xxl-job-demo
 #    accessToken:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
