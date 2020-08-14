@@ -27,7 +27,7 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback,RabbitTemplat
      *
      * 　确认消息发送成功: 通过实现ConfirmCallBack接口，消息发送到交换器Exchange后触发回调，使用该功能需要开启确认，
      *   spring-boot中配置如下：
-     * 　　旧：spring.rabbitmq.publisher-confirms = true
+     * 　旧：spring.rabbitmq.publisher-confirms = true
      *    新：spring.rabbitmq.publisher-confirm-type: correlated
      *
      * 2、ReturnCallback
@@ -38,9 +38,11 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback,RabbitTemplat
      *
      *
      * 消息消费确认
+     *
      * 　　消费确认模式有三种：NONE、AUTO、MANUAL。
      *
      * 　　开启手动确认需要在配置中加入：spring.rabbitmq.listener.direct.acknowledge-mode=manual
+     * 　　                          spring.rabbitmq.listener.simple.acknowledge-mode=manual
      *
      * 　　消息在处理失败后将再次返回队列，重新尝试消费，如果再次失败则直接拒绝。
      *
@@ -51,11 +53,14 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback,RabbitTemplat
     private RabbitTemplate rabbitTemplate;
 
     public void SendMsg(String exchange, String rountkey,Object context) {
+        //不设置不回调
         rabbitTemplate.setReturnCallback(this);
         rabbitTemplate.setConfirmCallback(this);
         CorrelationData data = new CorrelationData();
         //data.setId("123456");  //消息的唯一标识
-        rabbitTemplate.convertAndSend(exchange, rountkey,context,data); //队列名 和消息
+        //1.业务数据入库
+        //2.本地消息记录入库
+        rabbitTemplate.convertAndSend(exchange, rountkey,context,data);
     }
 
 
@@ -73,17 +78,20 @@ public class MsgProducer implements RabbitTemplate.ConfirmCallback,RabbitTemplat
         System.out.println("====================  confirm回调 ========================");
         //基于广播的方式才正确
         if (!ack) {
-            //消息重发或者---处理丢失 --异常处理
-            //放入数据库 用定时任务轮询再次发送
-            System.out.println("消息投递失败ack:" + ack +"============消息发送失败原因:" + cause );
+
+            // TODO 本地消息记录状态修改为  发送失败
+            System.out.println("消息投递到exchange失败ack:" + ack +"============消息发送失败原因:" + cause );
             System.out.println("消息投递失败ack:" + ack);
         } else {
-            System.out.println("消息发送成功-----消息投递成功ack:" + ack);
+
+            //TODO 本地消息记录状态修改为  成功发送
+
+            System.out.println("消息投递到exchange成功-----消息ack:" + ack);
         }
     }
 
 
-    //消息从交换器发送到对应队列失败时触发--注意是失败才会回调
+    //消息从交换器发送到对应队列失败时触发--注意是路由异常才会回调
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
 

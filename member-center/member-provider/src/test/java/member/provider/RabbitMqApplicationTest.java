@@ -24,7 +24,7 @@ public class RabbitMqApplicationTest  {
 
 
     /**
-     * 不带回调投递
+     * 不带回调投递--direct
      */
     @Test
     public void directSendTest(){
@@ -35,7 +35,7 @@ public class RabbitMqApplicationTest  {
 
 
     /**
-     * 带回调投递
+     * 带回调投递--direct
      */
     @Test
     public void directSendWithConfirm(){
@@ -45,33 +45,28 @@ public class RabbitMqApplicationTest  {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Test
     public void TopicSendTest(){
         rabbitTemplate.convertAndSend("topic_exchange","springboot.allen","这是模糊匹配测试");
         System.out.println("发送完毕");
 
     }
+
+
+    /**
+     * 带回调投递--topic
+     */
+    @Test
+    public void TopicSendWithConfirm(){
+        msgProducer.SendMsg("topic_exchange","springboot.allen","这是模糊匹配测试");
+        System.out.println("发送完毕");
+
+    }
+
+
+
+
+
 
     @Test
     public void fanoutSendTest(){
@@ -80,6 +75,20 @@ public class RabbitMqApplicationTest  {
         System.out.println("发送完毕");
 
     }
+
+
+    @Test
+    public void fanoutSendWithConfirm(){
+        //会投递到所有绑定fanout_exchange交换机的队列 不需要路由
+        msgProducer.SendMsg("fanout_exchange",null,"这是广播测试不需要路由key");
+        System.out.println("发送完毕");
+
+    }
+
+
+
+
+
 
     @Test
     public void Send(){
