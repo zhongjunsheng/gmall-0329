@@ -28,7 +28,9 @@ public class RabbitMqApplicationTest  {
      */
     @Test
     public void directSendTest(){
-        rabbitTemplate.convertAndSend("direct_exchange","direct","这是精确匹配测试");
+        for (int i = 0; i <20 ; i++) {
+            rabbitTemplate.convertAndSend("direct_exchange","direct","这是精确匹配测试" + i);
+        }
         System.out.println("success");
 
     }
@@ -71,7 +73,10 @@ public class RabbitMqApplicationTest  {
     @Test
     public void fanoutSendTest(){
         //会投递到所有绑定fanout_exchange交换机的队列 不需要路由
-        rabbitTemplate.convertAndSend("fanout_exchange",null,"这是广播测试不需要路由key");
+        for (int i = 0; i <20 ; i++) {
+            rabbitTemplate.convertAndSend("fanout_exchange",null,"这是广播测试不需要路由key" + i);
+        }
+
         System.out.println("发送完毕");
 
     }
@@ -80,7 +85,9 @@ public class RabbitMqApplicationTest  {
     @Test
     public void fanoutSendWithConfirm(){
         //会投递到所有绑定fanout_exchange交换机的队列 不需要路由
-        msgProducer.SendMsg("fanout_exchange",null,"这是广播测试不需要路由key");
+        for (int i = 0; i <20 ; i++) {
+            msgProducer.SendMsg("fanout_exchange",null,"这是广播测试不需要路由key");
+        }
         System.out.println("发送完毕");
 
     }
