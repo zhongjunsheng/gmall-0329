@@ -19,7 +19,7 @@ public interface ElasticSearchHighService {
      * @param size
      * @return
      */
-    List<Item> findByTitleAndHighlightAdnPageable(String queryName, int page, int size);
+    List<Item> highSearchByQueryName(String queryName, int page, int size);
 
 
 
@@ -32,4 +32,12 @@ public interface ElasticSearchHighService {
      *
      */
     List<Item>  searchTerm(String keyWord);
+
+
+    /**
+     * 高亮match查询总数
+     * @param queryName
+     * @return
+     */
+    Integer findCountByName(String queryName);
 }

@@ -9,11 +9,11 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 
 /**
- * 7.x后不再支持一个index多个type 只支持一个index一个type
+ * 7.x后不再支持一个index多个type 只支持一个index一个type  而且默认的type是_doc
  */
 @Data
 //@Document(indexName = "item",type = "product",shards = 3,replicas = 0)  //申明index(库)和type(表)
-@Document(indexName = "item",type = "_doc",shards = 3,replicas = 0)  //申明index(库)和type(表)
+@Document(indexName = "item",type = "_doc",shards = 3)  //申明index(库)和type(表)
 public class Item {
     @Id
     private Long id;

@@ -194,8 +194,8 @@ public class ElasticSearchApplicationTests {
      * 高亮搜索
      */
     @Test
-    public  void  queryMatch(){
-        List<Item> items = elasticSearchHighService.findByTitleAndHighlightAdnPageable("华为手机", 1, 10);
+    public  void  highSearch(){
+        List<Item> items = elasticSearchHighService.highSearchByQueryName("华为手机", 1, 10);
         System.out.println("=========="+ items.size());
         items.stream().forEach(System.out::println);
     }
@@ -209,5 +209,14 @@ public class ElasticSearchApplicationTests {
         items.stream().forEach(System.out::println);
     }
 
+
+    /**
+     * 搜索数量
+     */
+    @Test
+    public  void  highSearchCount(){
+       Integer  count = elasticSearchHighService.findCountByName("为啥呢");
+        System.out.println(count);
+    }
 
 }

@@ -12,6 +12,7 @@ import member.provider.biz.product.service.IProductService;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -58,39 +59,37 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
 
     @Override
+    @Transactional
     public void parent() {
         /**
          * 事务生效必须进过代理对象才能生效
          * 方法内的调用 应为没有进过代理所以事务不生效
          *
          */
-
-
-
         Product parent  = new Product();
         parent.setPoductName("parent").setNum(10);
         this.save(parent);
-        //child(); //方法内的调用就算child()加了事务注解也不会生效
-        try{
-            // 代理类调用--从aop上下文中获取代理对象(方法内的调用 事务生效)
-            IProductService   proxy   = (IProductService)AopContext.currentProxy();
-            System.out.println(proxy.getClass().getName());
-            proxy.child();
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        child(); //方法内的调用就算child()加了事务注解也不会生效
+//        try{
+//            // 代理类调用--从aop上下文中获取代理对象(方法内的调用 事务生效)
+//            IProductService   proxy   = (IProductService)AopContext.currentProxy();
+//            System.out.println(proxy.getClass().getName());
+//            proxy.child();
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+        int a =1/0;
 
     }
 
 
     @Override
-    @Transactional
     public void child() {
         User user = new User();
         user.setUsername("allen");
         user.setPwd("123456");
-        userService.save(user);
-        int a =1/0;
+        userService.saveUser(user);
+
     }
 
 

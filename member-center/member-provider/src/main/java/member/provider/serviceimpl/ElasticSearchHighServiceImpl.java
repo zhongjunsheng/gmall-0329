@@ -40,7 +40,7 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
 
 
     @Override
-    public List<Item> findByTitleAndHighlightAdnPageable(String queryName, int page, int size) {
+    public List<Item> highSearchByQueryName(String queryName, int page, int size) {
 
         HighlightBuilder.Field nameField = new HighlightBuilder
                 //.Field("*")
@@ -52,7 +52,7 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
         NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
                 //.withQuery(QueryBuilders.multiMatchQuery(queryName, "title", "brand").analyzer("ik_smart"))                 //在指定的字段field里高亮模糊搜索(分词)--最常用
                 //.withQuery(QueryBuilders.multiMatchQuery(queryName, "title", "brand").analyzer("ik_max_word"))              //在指定的字段field里高亮模糊搜索(分词)--最常用
-                .withQuery(QueryBuilders.multiMatchQuery(queryName, "title"))                                    //在指定的字段field里高亮模糊搜索(分词)--最常用
+                .withQuery(QueryBuilders.multiMatchQuery(queryName, "title"))                                     //在指定的字段field里高亮模糊搜索(分词)--最常用
                //.withQuery(QueryBuilders.queryStringQuery(queryName))                                                        //和match相思不过不在分field 而是在所有field里高亮模糊搜索(分词)--范围最广
                 .withPageable(PageRequest.of(page - 1, size))
                 .withHighlightFields(nameField)
@@ -119,6 +119,18 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
             }
         };
         return searchResultMapper;
+    }
+
+
+
+    @Override
+    public Integer findCountByName(String queryName) {
+        NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder()
+                //.withQuery(QueryBuilders.multiMatchQuery(queryName, "name","description"))
+                .withQuery(QueryBuilders.multiMatchQuery(queryName, "title"))
+                .build();
+        return  elasticsearchRestTemplate.queryForList(nativeSearchQuery, Item.class).size();
+
     }
 
 }
