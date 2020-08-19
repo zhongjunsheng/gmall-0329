@@ -33,5 +33,7 @@ public class User {
     private String flag;
     private String parentCode;
 
+    private String  perms;
+
 
 }

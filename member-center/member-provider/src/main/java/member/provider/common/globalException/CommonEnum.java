@@ -13,7 +13,8 @@ public enum CommonEnum  {
     INTERNAL_SERVER_ERROR("500", "服务器内部错误!"),
     SERVER_BUSY("503","服务器正忙，请稍后再试!"),
     BAD_PARM("504","参数不全!"),
-    NEED_LOGIN("0000","用户未登录!");
+    NEED_LOGIN("0000","用户未登录!"),
+    NO_AUTH("0001","无权限访问!");
 
     /** 错误码 */
     private String resultCode;
