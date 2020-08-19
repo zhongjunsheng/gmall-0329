@@ -34,11 +34,11 @@ public class UserRealm extends AuthorizingRealm {
             //subject.getPrincipal()获取的就是在认证是存入的第一个 参数
         Integer  userId = (Integer)subject.getPrincipal();
 
-        //填加用户权限
+        //填加用户权限 --- 查询用户的角色 --》 角色所有的权限
         User user = userService.getById(userId);
         Set<String> permissions = new HashSet<>();
         permissions.add(user.getPerms());
-        info.setStringPermissions(permissions);
+        info.setStringPermissions(permissions); //如果注解上的资源权限标识在这个集合里则放行 否则拦截
         return info;
     }
 
