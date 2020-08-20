@@ -76,7 +76,6 @@ public class ElasticSearchHighServiceImpl implements ElasticSearchHighService {
 //                .withQuery(QueryBuilders.queryStringQuery(keyword).defaultField(field))
 //                .withPageable(PageRequest.of(0, 100))
 //                .build();
-
         return  elasticsearchRestTemplate.queryForList(searchQuery, Item.class);
     }
 

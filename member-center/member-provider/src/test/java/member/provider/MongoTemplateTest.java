@@ -55,7 +55,8 @@
 //        //构造查询条件--意思事跟新id="5" and name ="pyh77"的记录/文档
 //        //Query query = Query.query(Criteria.where("id").is("7").and("name").is("pyh77"));
 //        Query query = Query.query(Criteria.where("id").gte("1"));
-//        Update update = Update.update("name", "张三丰66");
+//        //Update update = Update.update("name", "张三丰66");
+//        Update update = new Update().set("name", "张三丰66").set("address","gz");
 //        //1.跟新符合条件的第一条
 //        //mongoTemplate.updateFirst(query, update, Student.class);
 //        //2.存在就跟新 不存在就插入

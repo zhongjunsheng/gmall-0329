@@ -26,10 +26,7 @@ public interface ElasticSearchHighService {
 
 
     /**
-     *
      * 精确查询  --- term查询
-     *
-     *
      */
     List<Item>  searchTerm(String keyWord);
 

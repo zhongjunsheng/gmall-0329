@@ -56,7 +56,7 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User>  implements 
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    //@Transactional(propagation = Propagation.REQUIRES_NEW)
     public int saveUser(User user) {
         user =  new User();
         user.setUsername("allen");
