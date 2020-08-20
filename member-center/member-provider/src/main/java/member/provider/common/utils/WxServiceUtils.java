@@ -64,7 +64,6 @@ public class WxServiceUtils {
     /**
      * 向处暴露的获取token的方法
      * @return
-     * by 罗召勇 Q群193557337
      */
     public static String getAccessToken() {
         if(at==null||at.isExpired()) {
@@ -79,7 +78,6 @@ public class WxServiceUtils {
      * @param nonce
      * @param signature
      * @return
-     * by 罗召勇 Q群193557337
      */
     public static boolean check(String timestamp, String nonce, String signature) {
         //1）将token、timestamp、nonce三个参数进行字典序排序
@@ -96,7 +94,6 @@ public class WxServiceUtils {
      * 进行sha1加密
      * @param src
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static String sha1(String src) {
         try {
@@ -122,7 +119,6 @@ public class WxServiceUtils {
      * 解析xml数据包
      * @param is
      * @return
-     * by 罗召勇 Q群193557337
      */
     public static Map<String, String> parseRequest(InputStream is) {
         Map<String, String> map = new HashMap<>();
@@ -147,7 +143,6 @@ public class WxServiceUtils {
      * 用于处理所有的事件和消息的回复
      * @param requestMap
      * @return 返回的是xml数据包
-     * by 罗召勇 Q群193557337
      */
     public static String getRespose(Map<String, String> requestMap) {
         Object msg=null;
@@ -197,7 +192,6 @@ public class WxServiceUtils {
      * 进行图片识别
      * @param requestMap
      * @return
-     * by 罗召勇 Q群193557337
      */
    /* private static BaseMessage dealImage(Map<String, String> requestMap) {
         // 初始化一个AipOcr
@@ -251,7 +245,6 @@ public class WxServiceUtils {
      * 处理用户取消关注时的推送
      * @param requestMap
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static Object dealUnSubscribe(Map<String, String> requestMap) {
         System.out.println("用户:+"+requestMap.get("FromUserName")+"取消了关注");
@@ -263,7 +256,6 @@ public class WxServiceUtils {
      * 处理用户关注时的推送
      * @param requestMap
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static Object dealSubscribe(Map<String, String> requestMap) {
         System.out.println("用户:+"+requestMap.get("FromUserName")+"关注了该公众号");
@@ -283,7 +275,6 @@ public class WxServiceUtils {
      * 处理view类型的按钮的菜单
      * @param requestMap
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static BaseMessage dealView(Map<String, String> requestMap) {
 
@@ -294,7 +285,6 @@ public class WxServiceUtils {
      * 处理click菜单
      * @param requestMap
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static TextMessage dealClick(Map<String, String> requestMap) {
         String key = requestMap.get("EventKey");
@@ -316,7 +306,6 @@ public class WxServiceUtils {
      * 把消息对象处理为xml数据包
      * @param msg
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static String beanToXml(Object msg) {
         XStream stream = new XStream();
@@ -368,10 +357,9 @@ public class WxServiceUtils {
      * 调用图灵机器人聊天
      * @param msg 	发送的消息
      * @return
-     * by 罗召勇 Q群193557337
      */
     private static String chat(String msg) {
-        String result =null;
+        String result ;
         String url ="http://op.juhe.cn/robot/index";//请求接口地址
         Map params = new HashMap();//请求参数
         params.put("key",APPKEY);//您申请到的本接口专用的APPKEY
@@ -406,7 +394,6 @@ public class WxServiceUtils {
      * @param path	上传的文件的路径
      * @param type	上传的文件类型
      * @return
-     * by 罗召勇 Q群193557337
      */
     public static String upload(String path,String type) {
         File file = new File(path);
@@ -469,7 +456,6 @@ public class WxServiceUtils {
     /**
      * 获取带参数二维码的ticket
      * @return
-     * by 罗召勇 Q群193557337
      */
     public static String getQrCodeTicket() {
         String at = getAccessToken();
