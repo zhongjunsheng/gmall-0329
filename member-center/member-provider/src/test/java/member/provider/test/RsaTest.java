@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -39,5 +40,15 @@ public class RsaTest {
         System.out.println(pwd);
     }
 
+
+    //生产秘钥对
+    @Test
+    public void getKeyMap(){
+        Map<String, String> keyMap = RsaUtils.createKeys(1024);
+        String  publicKey = keyMap.get("publicKey");
+        String  privateKey = keyMap.get("privateKey");
+        System.out.println("公钥: \n\r" + publicKey);
+        System.out.println("私钥： \n\r" + privateKey);
+    }
 
 }
