@@ -1,6 +1,7 @@
 package member.provider.common.fiter;
 
 import lombok.extern.slf4j.Slf4j;
+import member.provider.common.globalException.CustomException;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
