@@ -23,7 +23,7 @@ public class UserRealm extends AuthorizingRealm {
 
 
 
-    //授权逻辑--  各类权限注解加上后会触发该方法
+    //授权逻辑--认证是授权的基础  各类权限注解加上后会触发该方法
     //这里的principalCollection 就是认证模块存进去的信息 一般是 用户整个信息 或者是Jwt的Token
     //后续在项目了只需要通过SecurityUtils.getSubject().getPrincipal()即可获取到用户相关信息
     @Override
