@@ -160,7 +160,7 @@ public class CompletableFutureTest {
         }).whenCompleteAsync((r, e) -> {
             System.out.println("上一步骤的执行结果:" + r);
             System.out.println("上一步骤的执行的异常结果:" + e);
-            int a = 1/0;
+            //int a = 1/0;
         }, service).exceptionally(ex -> {
             return "excetion msg" + ex; // 异常时的返回值
         });
@@ -185,11 +185,11 @@ public class CompletableFutureTest {
             return " hello1";  //必须有return 值
         },service).thenApplyAsync( r1 -> {
             System.out.println("这是线程一执行步骤1结果:"+r1); //打印上一个步执行结果
-            System.out.println("步骤1线程名称" + Thread.currentThread().getName());//线程A执行
+            System.out.println("步骤1线程名称" + Thread.currentThread().getName());//线程B执行
             return "hello2";
         },service).thenApplyAsync( r2 -> {
             System.out.println("这是线程一执行步骤2结果:"+r2); //打印上一步骤执行结果
-            System.out.println("步骤2线程名称" + Thread.currentThread().getName());//线程A执行
+            System.out.println("步骤2线程名称" + Thread.currentThread().getName());//线程c执行
             return "hello3";
         },service).whenCompleteAsync((r,e) -> {
             System.out.println("最终结果:" + r);
@@ -214,13 +214,20 @@ public class CompletableFutureTest {
         },service).thenCombine(task1,(t1,t2) ->{ // 组合任务1的结果来执行下一步操作
             System.out.println("t1:"+t1);  //任务1 的结果 task1
             System.out.println("t2:"+t2);  //任务2 的结果 task2
+
             return  t1+t2;
         }).whenComplete((result,exection) ->{
             System.out.println(result); //task1+task2
         });
 
+        //任务3
+
+        //任务4 ...
+
         //阻塞等待 task1 和 task2  都完成才会执行下一步
         CompletableFuture.allOf(task1,task2).join();
+        //上面2个线程结果返回来才走这一步
+        System.out.println("ggggg");
 
     }
 
