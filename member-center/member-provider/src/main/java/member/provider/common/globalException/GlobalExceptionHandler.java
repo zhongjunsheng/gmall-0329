@@ -1,5 +1,6 @@
 package member.provider.common.globalException;
 
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,6 +44,18 @@ public class GlobalExceptionHandler {
         return ResultBody.error(CommonEnum.BODY_NOT_MATCH);
     }
 
+    /**
+     * 没有权限异常/未登录认证
+     * @param req
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = UnauthenticatedException.class)
+    @ResponseBody
+    public ResultBody UnauthenticatedExceptionHandler(HttpServletRequest req, Exception e){
+        logger.error("未知异常！原因是:",e);
+        return ResultBody.error(CommonEnum.NO_AUTH);
+    }
 
     /**
      * 处理其他异常
@@ -56,6 +69,7 @@ public class GlobalExceptionHandler {
         logger.error("未知异常！原因是:",e);
         return ResultBody.error(CommonEnum.INTERNAL_SERVER_ERROR);
     }
+
 
     /**
      * 脑补其他类型异常

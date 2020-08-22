@@ -1,5 +1,8 @@
 package member.provider.common.fiter;
 
+import lombok.extern.slf4j.Slf4j;
+import member.provider.common.globalException.CustomException;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -7,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*",filterName = "corsFilter")
+@Slf4j
 public class CorsFilter implements Filter {
 
-    private final static org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(CorsFilter.class);
 
     /**
      * 处理跨域问题过滤器
@@ -23,7 +26,7 @@ public class CorsFilter implements Filter {
         response.addHeader("Access-Control-Allow-Methods", "POST,GET");
         response.addHeader("Access-Control-Max-Age", "3600");
         response.addHeader("Access-Control-Allow-Headers", "origin, content-type, accept, x-requested-with, sid, mycustom, smuser,Content-disposition");
-        LOGGER.info("*********************************过滤器被使用*********************************");
+        log.info("*********************************过滤器被使用*********************************");
         System.out.println("====================filter=======================");
         chain.doFilter(req, res);
     }

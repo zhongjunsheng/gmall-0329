@@ -19,36 +19,39 @@ spring:
       port: 6379
       timeout: 3000
 
-#  data:
-#    mongodb:
-#      host: 192.168.106.128
-#      port: 27017
-#  elasticsearch:
-#    rest:
-#      uris: 192.168.106.128:9200   ##注意这是ES7.x的配置方式, 对应springboot版本必须是2.2.x才兼容
+  data:
+    mongodb:
+      host: 192.168.106.128
+      port: 27017
+  elasticsearch:
+    rest:
+      uris: 192.168.106.128:9200   ##注意这是ES7.x的配置方式, 对应springboot版本必须是2.2.x才兼容
 #      uris: 192.168.106.128:9200,192.168.106.128:9202,192.168.106.128:9203
 
   rabbitmq:
-    host: 192.168.127.131
+    host: 192.168.106.128
     username: guest
     password: guest
     port: 5672
-   # publisher-confirms: true
-    publisher-confirm-type: correlated  #消息投递到到交换器Exchange后触发回调
-    publisher-returns:  true            #消息投递从交换器发送到对应队列失败时触发回调
-    template:
-      mandatory:  true             #开启接收不到路由的消息开关
+    publisher-confirm-type: correlated        #消息投递到到交换器Exchange后触发回调
+    publisher-returns:  true                  #消息投递从交换器发送到对应queue失败时触发回调
+    #template:
+      #mandatory: true                        #开启接收消息投递 无法路由的 回调开总开关默认是true
     listener:
-      direct:
-        acknowledge-mode: manual  #手动ack--可无
-      simple:
-        acknowledge-mode: manual   #消费手动ack
+      simple:                                 #点对点方式
+        acknowledge-mode: manual              #消费手动ack  -- simple是点对点方式/topic也属于点对点
         retry:
-          enabled: true       #开启消费重发重试
-          max-attempts: 5     #最大次数
-          max-interval: 2000  #重试间隔2000ms
+          enabled: true                       #开启消费重发-- 默认不重发
+          max-attempts: 5                     #最大次数
+          max-interval: 3000                  #重试间隔5000ms
+          initial-interval: 2000              #第一次和第二次之间的重试间隔
+      direct:                                 #发布/订阅方式
+        acknowledge-mode: manual              #手动ack     --  direct是发布/订阅方式
 
-
+        #retry:
+          #enabled: true                      #direct方式的retry配置是不生效的 全部是走simple的方式配置
+          #max-attempts: 3
+          #max-interval: 5000
 
 
 ####阿里支付配置
@@ -61,7 +64,6 @@ alipay:
   sign_type: RSA2
   gatewayUrl: https://openapi.alipaydev.com/gateway.do
   charset: utf-8
-
 
 ###JWT 配置
 gmall:
@@ -142,11 +144,7 @@ mybatis-plus:
 #spring.rabbitmq.publisher-returns=true
 #开启接收不到路由的消息
 #spring.rabbitmq.template.mandatory=true
-# 开启手动ACK
 #spring.rabbitmq.listener.direct.acknowledge-mode=manual
-#自动ack 默认是自动ack
-#spring.rabbitmq.listener.direct.acknowledge-mode=auto
-#消息手工签收
 #spring.rabbitmq.listener.simple.acknowledge-mode=manual
 #监听大小5个
 #spring.rabbitmq.listener.simple.concurrency= 5
