@@ -56,11 +56,14 @@ public class DistanceUtils {
 //        113.365686,23.190164;
 
         //植物园地铁站
-        double lng2 = 113.365686;
-        double lat2  = 23.190164;
+//        double lng2 = 113.365686;
+//        double lat2  = 23.190164;
+
+        double lng2 = 113.309140;
+        double lat2 = 23.035502;
 
         String distance = getDistance(lng1, lat1, lng2, lat2);
-        System.out.println(distance);
+        System.out.println(distance +"km");
 
     }
 

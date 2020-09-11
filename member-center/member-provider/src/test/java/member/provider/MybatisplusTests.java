@@ -2,7 +2,9 @@ package member.provider;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import member.center.com.pojo.MarkVO;
 import member.center.com.pojo.User;
+import member.provider.mapper.MarkMapper;
 import member.provider.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +24,17 @@ public class MybatisplusTests {
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    private MarkMapper markMapper;
+
+
+    @Test
+    public  void  getDistance(){
+        List<MarkVO> distanceByLatAndLng = markMapper.getDistanceByLatAndLng("113.871300", "23.248335");
+        System.out.println(distanceByLatAndLng);
+    }
+
 
     //查询单个数据
     @Test

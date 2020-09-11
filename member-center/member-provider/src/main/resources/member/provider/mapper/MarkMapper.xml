@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member.provider.mapper.MarkMapper">
+
+
+    <select id="getDistanceByLatAndLng" resultType="member.center.com.pojo.MarkVO">
+         SELECT  id , name,address,lat,lng,
+        -- 6371* acos(cos(radians(39.915599)) * cos(radians(`lat`)) * cos(radians(`lng`) - radians(116.402687)) + sin(radians(39.915599)) * sin(radians(`lat`))) AS `distance`
+        6371* acos(cos(radians(#{lat})) * cos(radians(`lat`)) * cos(radians(`lng`) - radians(#{lng})) + sin(radians(#{lat})) * sin(radians(`lat`))) AS `distance`
+        FROM `markers`
+        HAVING `distance` is not  null  -- and distance <![CDATA[<]]> 25
+        ORDER BY `distance`
+    </select>
+</mapper>
