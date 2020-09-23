@@ -4,10 +4,9 @@ public class User {
 	private String name;
 	private Integer Age;
 	private Double slary;
-	public String getName() {
-		return name;
-	}
-	
+
+
+
 	
 	
 	
@@ -25,22 +24,32 @@ public class User {
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public String getName() {
+		return name;
 	}
+
+	public User setName(String name) {
+		this.name = name;
+		return this;
+	}
+
 	public Integer getAge() {
 		return Age;
 	}
-	public void setAge(Integer age) {
+
+	public User setAge(Integer age) {
 		Age = age;
+		return this;
 	}
+
 	public Double getSlary() {
 		return slary;
 	}
-	public void setSlary(Double slary) {
-		this.slary = slary;
-	}
 
+	public User setSlary(Double slary) {
+		this.slary = slary;
+		return this;
+	}
 
 	@Override
 	public String toString() {

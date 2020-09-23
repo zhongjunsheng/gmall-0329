@@ -1,14 +1,11 @@
 package member.provider.Java8Test;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import org.junit.Test;
 
 /**
  * 
@@ -35,6 +32,11 @@ public class Java8StreamApiTest {
 	);
 
 
+	@Test
+	public void reduce3(){
+		list = null;
+		List<String> collect = list.stream().map(User::getName).collect(Collectors.toList());
+	}
 
 	@Test
 	public void reduce2(){

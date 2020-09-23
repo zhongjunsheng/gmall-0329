@@ -1,10 +1,19 @@
 package member.provider.common.intercetor;
 
+import member.provider.common.fiter.InitFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.Filter;
+import java.util.Collections;
+
+/**
+ * @author zhongjs
+ */
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
@@ -12,6 +21,17 @@ public class WebConfiguration implements WebMvcConfigurer {
     private LoginInterceptor loginInterceptor;
     @Autowired
     private RequestLogInterceptor requestLogInterceptor;
+
+
+    @Bean
+    public FilterRegistrationBean<Filter> getFilter() {
+        FilterRegistrationBean<Filter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setOrder(1);
+        registrationBean.setFilter(new InitFilter());
+        registrationBean.setUrlPatterns(Collections.singleton("*"));
+        return registrationBean;
+    }
+
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
