@@ -168,6 +168,11 @@
             <version>4.1.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>4.6.1</version>
+        </dependency>
         <!--jwt依赖-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

@@ -3,6 +3,7 @@ package member.provider.JUCTest;
 import org.junit.Test;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -230,5 +231,25 @@ public class CompletableFutureTest {
         System.out.println("ggggg");
 
     }
+
+
+    @Test
+    public void method8(){
+        CompletableFuture<String>  task1 = CompletableFuture.supplyAsync(() -> {
+            return  getValue() + "";
+        },service);
+
+        try {
+            System.out.println(task1.get());
+        } catch (InterruptedException e) {
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int getValue() {
+        return  1;
+    }
+
 
 }

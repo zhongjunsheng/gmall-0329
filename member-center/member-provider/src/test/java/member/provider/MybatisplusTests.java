@@ -2,12 +2,14 @@ package member.provider;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import member.center.com.api.UserService;
 import member.center.com.pojo.MarkVO;
 import member.center.com.pojo.User;
 import member.provider.mapper.MarkMapper;
 import member.provider.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +30,19 @@ public class MybatisplusTests {
     @Autowired
     private MarkMapper markMapper;
 
+    @Autowired
+    private UserService userService;
 
+
+    @Test
+    public  void   dddd(){
+
+        User user = new User();
+        user.setId(1L);
+        user.setUsername("allen");
+        user.setPwd("999998");
+        userService.saveOrUpdate(user);
+    }
     @Test
     public  void  getDistance(){
         List<MarkVO> distanceByLatAndLng = markMapper.getDistanceByLatAndLng("113.871300", "23.248335");
