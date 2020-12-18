@@ -128,9 +128,9 @@ public class CompletableFutureTest {
     public void method3(){
         CompletableFuture.supplyAsync(() -> {
             System.out.println("有返回值的执行方式--new 线程方式" + Thread.currentThread().getName()); //线程A执行
-            int a = 1/0;
+            //int a = 1/0;
             return " hello";  //必须有return 值
-        }).whenComplete((result,exception) -> {    //这里的r表示上一步骤的执行结果(hello),上一步骤的执行的异常结果
+        }).whenComplete((result,exception) -> {    //这里的result表示上一步骤的执行结果(hello),上一步骤的执行的异常结果
             System.out.println("上一步骤的执行结果:" + result);  //hello,出现异常则不会返回
             System.out.println("上一步骤的执行的异常结果:" + exception); //java.util.concurrent.CompletionException: java.lang.ArithmeticException: / by zero
             System.out.println("有返回值的执行方式--new 线程方式" + Thread.currentThread().getName());  //main线程执行
@@ -161,9 +161,9 @@ public class CompletableFutureTest {
         }).whenCompleteAsync((r, e) -> {
             System.out.println("上一步骤的执行结果:" + r);
             System.out.println("上一步骤的执行的异常结果:" + e);
-            //int a = 1/0;
+            int a = 1/0;
         }, service).exceptionally(ex -> {
-            return "excetion msg" + ex; // 异常时的返回值
+            return "excetion msg :" + ex; // 异常时的返回值
         });
 
         String result = null;
@@ -225,7 +225,7 @@ public class CompletableFutureTest {
 
         //任务4 ...
 
-        //阻塞等待 task1 和 task2  都完成才会执行下一步
+        //阻塞等待 task1 和 task2 task3... 都完成才会执行下一步
         CompletableFuture.allOf(task1,task2).join();
         //上面2个线程结果返回来才走这一步
         System.out.println("ggggg");
