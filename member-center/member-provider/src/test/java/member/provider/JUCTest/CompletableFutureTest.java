@@ -112,7 +112,7 @@ public class CompletableFutureTest {
     }
 
 
-    //无返回值线程执行方式2 -- 线程池方式
+    //无返回值线程执行方式2 -- 线程池调度方式
     @Test
     public void method2(){
         CompletableFuture.runAsync(() -> {

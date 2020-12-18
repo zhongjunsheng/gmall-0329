@@ -1,7 +1,10 @@
 package member.provider.Java8Test;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 
+@Data
 public class DemoUser {
     private Integer num;
     private BigDecimal price;

@@ -33,6 +33,21 @@ public class Java8StreamApiTest {
 
 
 	@Test
+	public void t1(){
+		List<DemoUser> list = 	new ArrayList<>();
+		list.add(new DemoUser(1,new BigDecimal(10)));
+		list.add(new DemoUser(2,new BigDecimal(12)));
+		list.add(new DemoUser(3,new BigDecimal(13)));
+
+		//过滤指定条件数据
+		list.removeIf(item ->  item.getNum() > 2);
+		System.out.println(list);
+
+	}
+
+
+
+	@Test
 	public void reduce3(){
 		list = null;
 		List<String> collect = list.stream().map(User::getName).collect(Collectors.toList());
@@ -40,7 +55,7 @@ public class Java8StreamApiTest {
 
 	@Test
 	public void reduce2(){
-		//存在一个则返回true
+		//匹配到任意一个则返回true
 		boolean b = list.stream().anyMatch(item -> item.getAge() > 10);
 		System.out.println(b);
 
@@ -50,11 +65,21 @@ public class Java8StreamApiTest {
 	@Test
 	public void reduce(){
 		BigDecimal pay = users.stream().map(item ->
-				item.getPrice().multiply(new BigDecimal(item.getNum()))).reduce((a, b) -> a.add(b)).get();
+				item.getPrice().multiply(new BigDecimal(item.getNum())))
+				.reduce((a, b) -> a.add(b)).get();
 		System.out.println(pay);
 	}
 
-	
+	@Test
+	public void reduce10(){
+		BigDecimal pay = users.stream().map(item ->
+				item.getPrice().multiply(new BigDecimal(item.getNum())))
+				.reduce(BigDecimal::add).get();
+		System.out.println(pay);
+	}
+
+
+
 	@Test
 	public void test1() {
 		
@@ -74,7 +99,7 @@ public class Java8StreamApiTest {
 	
 	  //list.stream().filter(e -> e.getAge()>11).forEach(System.out::println);
 	  //collect 把流 汇集
-	
+	   //过滤出 大于11 的数据
 	   List<User> collect = list.stream().filter(e -> e.getAge()>11).collect(Collectors.toList());
 	   collect.forEach(System.out::println);
 	} 
@@ -123,10 +148,18 @@ public class Java8StreamApiTest {
 		});
 		
 	}
-	
-	
-	
-	
+
+	@Test
+	//stream 的映射 -- list 转 map
+	public void test88() {
+		Map<String, User> collect = list.stream().collect(Collectors.toMap(User::getName, U -> U, (key1, key2) -> key2));
+		System.out.println(collect);
+	}
+
+
+
+
+
 	@Test
 	//stream 的映射 -- list 转 m
 	
@@ -144,8 +177,12 @@ public class Java8StreamApiTest {
 		//lt.stream().sorted().forEach(item -> System.out.println(item));
 		
 		//只有一个条件的 比较
-		list.stream().sorted((a,b) -> a.getAge().compareTo(b.getAge())).forEach(System.out::println) ;
-		
+		//list.stream().sorted((a,b) -> a.getAge().compareTo(b.getAge())).forEach(System.out::println) ;
+		//自然排序
+		//list.stream().sorted(Comparator.comparing(User::getAge)).forEach(System.out::println) ;
+		//倒序排
+		list.stream().sorted(Comparator.comparing(User::getAge).reversed()).forEach(System.out::println);
+
 		
 		System.out.println("==================================");
 		//2个条件的比较--年龄相同比较名字
@@ -172,8 +209,8 @@ public class Java8StreamApiTest {
 	//求和
 	public  void test11() {
 		Map<String,String> map = new HashMap<>();
-		map.put("name","gg");
-		String name = map.computeIfAbsent("name", k -> "allen");
+		//map.put("name","gg");
+		String name = map.computeIfAbsent("name", k -> "allen");  //没有key为name时则给个默认值  allen
 
 		System.out.println(name);
 
