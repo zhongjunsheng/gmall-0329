@@ -2,10 +2,8 @@ package member.provider.JUCTest;
 
 import org.junit.Test;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
+import java.util.function.BiConsumer;
 
 /**
  * java8 异步编排技术
@@ -30,7 +28,7 @@ public class CompletableFutureTest {
      *  线程串行化方法:
      thenApply 方法：当一个线程依赖另一个线程时，获取上一个任务返回的结果，并返回当前任务的返回值。
 
-     thenAccept方法：消费处理结果。接收任务的处理结果，并消费处理，无返回结果。
+     thenAccept方法：消费处理结果。接收任务的处理结果，并消费处理，无返回值。
 
      thenRun方法：只要上面的任务执行完成，就开始执行thenRun，只是处理完任务后，执行 thenRun的后续操作,无需接受返回值也没有返回值
 
@@ -92,7 +90,7 @@ public class CompletableFutureTest {
      * public static CompletableFuture<Object> anyOf(CompletableFuture<?>... cfs);
      * ```
      *
-     * allOf：阻塞等待所有任务完成
+     * allOf：阻塞等待所有任务完成才执行下一步
      *
      * anyOf：只要有一个任务完成即可执行下一步
      *
@@ -139,15 +137,27 @@ public class CompletableFutureTest {
 
 
     @Test
-    public void method4(){
-        CompletableFuture.supplyAsync(() -> {
+    public void method4() throws ExecutionException, InterruptedException {
+//        CompletableFuture<String> result = CompletableFuture.supplyAsync(() -> {
+//            System.out.println("有返回值的执行方式--线程池调度" + Thread.currentThread().getName());//线程A执行
+//            return " hello2";  //必须有return 值
+//        }).whenCompleteAsync((r, e) -> {
+//            System.out.println("上一步骤的执行结果:" + r);
+//            System.out.println("上一步骤的执行的异常结果:" + e);
+//            System.out.println("有返回值的执行方式--new 线程方式" + Thread.currentThread().getName()); //线程池选择具体的线程执行
+//        }, service);
+
+
+        CompletableFuture<String> result2 = CompletableFuture.supplyAsync(() -> {
             System.out.println("有返回值的执行方式--线程池调度" + Thread.currentThread().getName());//线程A执行
             return " hello2";  //必须有return 值
-        }).whenCompleteAsync((r,e) ->{
-            System.out.println("上一步骤的执行结果:" +r);
-            System.out.println("上一步骤的执行的异常结果:" +e);
+        }).thenApplyAsync(r -> {
+            System.out.println("上一步骤的执行结果:" + r);
             System.out.println("有返回值的执行方式--new 线程方式" + Thread.currentThread().getName()); //线程池选择具体的线程执行
-        },service);
+            return r + "allen";
+        }, service);
+
+        System.out.println(result2.get());  // 返回hello2allen
     }
 
 
@@ -184,19 +194,17 @@ public class CompletableFutureTest {
         CompletableFuture<String> exceptionally = CompletableFuture.supplyAsync(() -> {
             System.out.println("有返回值的执行方式--线程池调度" + Thread.currentThread().getName());//线程A执行
             return " hello1";  //必须有return 值
-        },service).thenApplyAsync( r1 -> {
+        },service).thenApplyAsync(r1 -> {
             System.out.println("这是线程一执行步骤1结果:"+r1); //打印上一个步执行结果
             System.out.println("步骤1线程名称" + Thread.currentThread().getName());//线程B执行
             return "hello2";
-        },service).thenApplyAsync( r2 -> {
-            System.out.println("这是线程一执行步骤2结果:"+r2); //打印上一步骤执行结果
+        },service).thenApplyAsync(r2 -> {
             System.out.println("步骤2线程名称" + Thread.currentThread().getName());//线程c执行
             return "hello3";
         },service).whenCompleteAsync((r,e) -> {
+            System.out.println("有返回值的执行方式when--线程池调度" + Thread.currentThread().getName());
             System.out.println("最终结果:" + r);
-        },service).exceptionally( ex -> {
-            return "gg";
-        });
+        },service).exceptionally( ex -> "gg");
 
     }
 
@@ -235,9 +243,7 @@ public class CompletableFutureTest {
 
     @Test
     public void method8(){
-        CompletableFuture<String>  task1 = CompletableFuture.supplyAsync(() -> {
-            return  getValue() + "";
-        },service);
+        CompletableFuture<String>  task1 = CompletableFuture.supplyAsync(() -> getValue() + "",service);
 
         try {
             System.out.println(task1.get());
@@ -247,6 +253,49 @@ public class CompletableFutureTest {
         }
     }
 
+
+    @Test
+    public  void method9(){
+        CompletableFuture<String> f1 = CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return "f1";
+        });
+
+
+        CompletableFuture<String> f2 = CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return "f2";
+        });
+
+        System.out.println("阻塞all of之前");
+         CompletableFuture.allOf(f1, f2).join();
+
+        //阻塞，直到所有任务结束。
+        //all.join();
+        System.out.println(System.currentTimeMillis() + ":阻塞结束");
+        try {
+            System.out.println(f1.get());
+            System.out.println(f2.get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+
+        //一个需要耗时2秒，一个需要耗时3秒，只有当最长的耗时3秒的完成后，才会结束。
+        System.out.println("任务均已完成。");
+    }
     private int getValue() {
         return  1;
     }

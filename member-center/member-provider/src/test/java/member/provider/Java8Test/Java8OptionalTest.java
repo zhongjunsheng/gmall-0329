@@ -1,8 +1,8 @@
 package member.provider.Java8Test;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import com.google.common.collect.Lists;
 import com.sun.javafx.scene.control.skin.TableHeaderRow;
 import org.junit.Test;
 
@@ -39,4 +39,46 @@ public class Java8OptionalTest {
 		//System.out.println(op.get());
 	}
 
-}
+
+
+	@Test
+	public void test4(){
+
+		Map<String,String> map = new HashMap<>();
+		//有就取 没有则取默认的
+		String s = map.computeIfAbsent("name", v -> "allen");
+		System.out.println(s);
+
+	}
+
+
+
+    @Test
+    public void test5(){
+
+        List<Integer> all = new ArrayList<>();
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        //list集合分批每批3条
+        List<List<Integer>> supList1 = Lists.partition(list, 4);
+        //System.out.println(supList1);
+        supList1.forEach(item ->{
+            all.addAll(item);
+        });
+
+        System.out.println(all);
+
+    }
+
+	@Test
+	public void test6() {
+		String format = String.format("%s:%s:%s", "a", " ", "c");
+		//System.out.println(format.trim());
+
+		String a = " a b";
+
+
+		System.out.println(a.trim());
+
+	}
+
+	}

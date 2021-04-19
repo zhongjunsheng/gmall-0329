@@ -70,11 +70,13 @@ public class Java8StreamApiTest {
 		System.out.println(pay);
 	}
 
+
+	//先过滤在统计
 	@Test
 	public void reduce10(){
-		BigDecimal pay = users.stream().map(item ->
+		BigDecimal pay = users.stream().filter(e -> e.getNum() > 1).map(item ->
 				item.getPrice().multiply(new BigDecimal(item.getNum())))
-				.reduce(BigDecimal::add).get();
+				.reduce(BigDecimal.ZERO,BigDecimal::add);
 		System.out.println(pay);
 	}
 
