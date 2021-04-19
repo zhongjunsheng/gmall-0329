@@ -11,6 +11,7 @@ public class StrategyContext {
 
     @Autowired
     private ApplicationContext applicationContext;
+
     @Autowired
     private StrategyContext strategyContext;
 
