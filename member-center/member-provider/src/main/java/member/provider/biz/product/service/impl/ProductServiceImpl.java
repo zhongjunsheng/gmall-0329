@@ -87,14 +87,17 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     @Transactional
     public void child() {
         User user = new User();
-        user.setUsername("allen");
-        user.setPwd("123456");
+        user.setUsername("allen2");
+        user.setPwd("1234567");
         userService.saveUser(user);
 
 
         Product parent  = new Product();
         parent.setPoductName("parent").setNum(10);
         this.save(parent);
+
+        int a =1/0;
+
 
 
     }

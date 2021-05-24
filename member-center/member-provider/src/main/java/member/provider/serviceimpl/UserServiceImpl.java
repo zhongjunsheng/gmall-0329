@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl  extends ServiceImpl<UserMapper, User>  implements UserService {
@@ -56,7 +58,7 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User>  implements 
     }
 
     @Override
-    //@Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public int saveUser(User user) {
         user =  new User();
         user.setUsername("allen");
@@ -71,4 +73,5 @@ public class UserServiceImpl  extends ServiceImpl<UserMapper, User>  implements 
         condition.eq("username",username).eq("pwd",password);
         return userMapper.selectOne(condition);
     }
+
 }

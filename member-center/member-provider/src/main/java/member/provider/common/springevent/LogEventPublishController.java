@@ -25,7 +25,7 @@ public class LogEventPublishController {
         user.setUsername("pppp888");
         user.setPwd("99999");
         userService.save(user);
-        //发布事件-- 默认就是异步事件 监听者事务和这个是独立事务  互不影响
+        //发布事件-- 默认就是异步事件 不需添加 @Async注解 监听者事务和这个是独立事务  互不影响
         applicationContext.publishEvent(event);
         return "ggggg";
     }

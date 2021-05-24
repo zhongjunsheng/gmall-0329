@@ -24,6 +24,5 @@ public class LogEventListen {
         }
         log.info("gggg=======");
         System.out.println(Thread.currentThread().getName());
-        int a = 1/0;
     }
 }
