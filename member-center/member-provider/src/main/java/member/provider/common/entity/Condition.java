@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
  */
 public class Condition<T> extends QueryWrapper<T> {
 
+    public  static  String  BB = "gg";
+
     /**
      * 创建一个查询条件器
      *
@@ -25,6 +27,10 @@ public class Condition<T> extends QueryWrapper<T> {
     public Condition(T entity) {
 
         super(entity);
+    }
+
+    public  String  test(){
+        return "gg";
     }
 
     public Condition(T entity, String... columns) {

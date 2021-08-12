@@ -3,12 +3,14 @@ package member.provider.JUCTest;
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class RetreentLockTest2 {
 
     public static void main(String[] args) {
       Lock lock = new ReentrantLock();
+        LockSupport.park();
 
 
       new Thread(() -> {

@@ -7,8 +7,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * 
@@ -79,8 +82,26 @@ public class Java8StreamApiTest2 {
 		}).collect(Collectors.toList());
 		
 		System.out.println(collect.toString());
-		
-       
 	}
-	
+
+
+
+	@Test
+	public void whenFilterList_thenSuccess(){
+		List<String> names = Arrays.asList("Adam", "Alexander", "John", "Tom");
+//		List<String> result = names.stream()
+//				.filter(name -> name.startsWith("A") && name.length() < 5)
+//				.collect(Collectors.toList());
+
+
+		Predicate<String> predicate1 = str -> str.startsWith("A");
+		Predicate<String> predicate2 =  str -> str.length() < 5;
+
+		List<String> result = names.stream()
+				.filter(predicate1.and(predicate2))
+				.collect(Collectors.toList());
+
+		System.out.println(result);
+
+	}
 }

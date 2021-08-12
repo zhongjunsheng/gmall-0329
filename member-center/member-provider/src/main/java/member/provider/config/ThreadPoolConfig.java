@@ -47,5 +47,7 @@ public class ThreadPoolConfig {
 
         //获取cpu 是几核处理器
         System.out.println(Runtime.getRuntime().availableProcessors());
+
+        ThreadLocal<Long>  t = new ThreadLocal<>();
     }
 }
